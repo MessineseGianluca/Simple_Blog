@@ -5,19 +5,11 @@
 </head>
 <body>
   <?php
-    $servername = "localhost";
-    $username = "username";
-    $password = "password";
-    $dbname = "blogdb";
-
-    #Connect to RDBMS
-    $connection = new mysqli($servername, $username, $password, $dbname);
-    #Check connection
-    if($connection->connect_error) {
-      die("Connection hasn't workerd because: " . $connection->connect_error);
-    }
-    echo "connected";
-    $connection->close();
+    include 'config.php';
+    $data = connectMysql('localhost', 'username', 'password', 'blogdb');
+    #Inserimenti
+    #Queriees 
+    $data->close();
   ?>
 </body>
 </html>
