@@ -1,0 +1,23 @@
+# Simple-Blog
+A Simple Blog using php and mysql. 
+
+##########################Configuring mysql#################################
+-Open mysql as root: mysql -u root -p and insert password;
+
+-Create in mysql a user 'username' with a password 'password': 
+  CREATE USER 'username'@'localhost' IDENTIFIED BY 'password';
+  SET PASSWORD FOR 'username'@'localhost' = PASSWORD('password');
+
+-Create a database:
+  CREATE DATABASE blogdb;
+
+-Assign all the privileges to the user 'username'
+  SET PASSWORD FOR 'username'@'localhost' = PASSWORD('password');
+
+
+##############################Creating tables########################################
+-open mysql as username: mysql -u username -p and insert password;
+
+-Copy the code that is inside tables.sql to create the tables;
+
+
