@@ -1,16 +1,22 @@
-<?php 
-  
-  #Connect to the RDBMS
-  function connectMysql($servername, $username, $password, $dbname) {
-    $connection = new mysqli($servername, $username, $password, $dbname);
+<?php
+  class Config {
+    private $servername = 'localhost';
+    private $username = 'username';
+    private $password = 'password';
+    private $dbname = 'blogdb';
     
-    #Check connection
-    if($connection->connect_error) {
-      die("Connection hasn't workerd because: " . $connection->connect_error);
+    public function getServername() {
+      return $this->servername;
     }
-    echo "connected";
-    return $connection;
-  }
-
+    public function getUsername() {
+      return $this->username;
+    }
+    public function getPassword() {
+      return $this->password;
+    }
+    public function getDbname() {
+      return $this->dbname;
+    }  
+  
+  } 
 ?>
-
