@@ -5,16 +5,16 @@
     private $password = 'password';
     private $dbname = 'blogdb';
     
-    public function getServername() {
+    public function getServer() {
       return $this->servername;
     }
-    public function getUsername() {
+    public function getUser() {
       return $this->username;
     }
-    public function getPassword() {
+    public function getPassw() {
       return $this->password;
     }
-    public function getDbname() {
+    public function getDb() {
       return $this->dbname;
     }  
   

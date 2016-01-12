@@ -6,22 +6,21 @@
 <body>
   <?php
     include 'php_functions.php';
-    include 'config.php';
+    include 'install.php';
     
-    $conf = new Config();
+    #Create an object for the dbms handlings
+    $data = new MysqlConnector();
     
-    $data = connectMysql(
-        $conf->getServername(), 
-        $conf->getUsername(), 
-        $conf->getPassword(), 
-        $conf->getDbname()
-    );
+    #open mysql connection
+    $data->connectMysql();
+    echo $data->getStatus() . '<br>';
     
-    #Inserimenti
+    #Inserts
     #Queriees 
     
     #close mysql connection 
-    $data->close();
+    $data->disconnectMysql();
+    echo $data->getStatus();
   ?>
 </body>
 </html>
