@@ -15,9 +15,10 @@ A Simple Blog using php and mysql.
   SET PASSWORD FOR 'username'@'localhost' = PASSWORD('password');
 
 
-NOTE: if you want to access to the db with different username and password, change the attributes in config.php Config class.
+NOTE: if you want to access to the db with different username and password, 
+      change the attributes in config.php Config class.
 
-##############################Creating tables########################################
+##############################Creating tables###############################
 -open mysql as username: mysql -u username -p and insert password;
 
 -Copy the code that is inside db.sql to create the tables;
