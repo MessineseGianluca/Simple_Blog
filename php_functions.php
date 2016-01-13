@@ -19,10 +19,10 @@
     public function connectMysql() {
         
       $this->connection = new mysqli(
-          $this->conf->getServer(),  
-          $this->conf->getUser(), 
-          $this->conf->getPassw(), 
-          $this->conf->getDb()
+          $this->conf->servername,  
+          $this->conf->username, 
+          $this->conf->password, 
+          $this->conf->dbname
       );
       
       #Check connection
