@@ -1,4 +1,7 @@
 <?php
+  include 'php_functions.php';
+  ####################################FUNCTIONS################################
+  
   #CREATE an array which will contain the SQL statements for deleting tables
   #and RETURN the string that we need.
   #Note: SQL can carry on only one statement for time. This is the reason why
@@ -11,7 +14,7 @@
         'DROP TABLE Users;'
     );
     
-    return $dropper[$n_statement];
+    return $dropper[$n_statement]; 
   }      
   
   
@@ -53,4 +56,36 @@
     return $creator[$n_statement];
   }
    
+   
+  #####################Calls methods########################à
+     
+  #Create Mysql object 
+  $installer = new MysqlConnector();
+  
+  #Connect to mysql
+  $installer->connectMysql();
+ 
+  #Uninstall old tables
+  for($i = 0; $i < 3; $i++) {  
+    if($installer->connection->query(deleteTables($i)) === TRUE) {
+      echo "Deleted <br>";    
+    }
+    else {
+      echo $installer->connection->error. '<br>';
+    }
+  }
+  
+  #Install new tables 
+  for($i = 0; $i < 3; $i++) {
+    if($installer->connection->query(addTables($i)) === TRUE) {
+      echo "Created <br>";
+    }
+    else {
+      echo $installer->connection->error . '<br>';
+    }
+  }
+  
+  #Disconnect from Mysql
+  $installer->disconnectMysql();
+ 
 ?>

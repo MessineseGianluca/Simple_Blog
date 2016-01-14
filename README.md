@@ -15,8 +15,16 @@ A Simple Blog using php and mysql.
   SET PASSWORD FOR 'username'@'localhost' = PASSWORD('password');
 
 
-NOTE: if you want to access to the db with different username and password, 
+NOTE: if you want to access to the DB with different username and password, 
       change the attributes in config.php Config class.
 
-
-
+########################Installing Tables######################
+After that, you have to create the SQL tables into your DB and you can do that
+by executing install.php: it will erase all the old tables inside the DB and 
+it will install the newest. This is why you can execute install.php even when 
+you want to add another column inside a several table:
+(modify the SQL code which will create the table where we are going to 
+add the column and then you can execute install.php)
+or when you simply want to reset the DB.
+To execute install.php write in your browser search bar: 
+localhost/.../.../Simple_Blog/install.php
