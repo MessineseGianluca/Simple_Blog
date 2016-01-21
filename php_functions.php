@@ -36,7 +36,15 @@
         
       }  
     
-
+      #Insert new account
+      public function signUp($email, $pass, $name, $surname) {
+        $this->connection->query(
+          "INSERT INTO Users(email, password, name, surname)
+           VALUES('$email', '$pass', '$name', '$surname');      
+          "
+        ) or die($data->connection->error);
+        echo 'Signed up. <br>';
+      }
     
       #Disconnect from RDBMS
       public function disconnectMysql() {

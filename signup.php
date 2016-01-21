@@ -8,16 +8,8 @@
   
   $data = new MysqlConnector();
   $data->connectMysql();
-  $data->connection->query('
-      INSERT INTO Users(email, password, name, surname)
-      VALUES(' 
-        . $email . ','
-        . $pass . ','
-        . $name . ','
-        . $surname 
-        . '
-      );
-  ') or die($data->connection->error);
+  
+  $data->signUp($email, $pass, $name, $surname);
   
   $data->disconnectMysql();
 ?>
