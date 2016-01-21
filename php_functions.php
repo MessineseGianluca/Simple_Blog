@@ -1,4 +1,5 @@
 <?php
+  session_start();
   include 'config.php';
   
   Class MysqlConnector {
@@ -43,18 +44,24 @@
            VALUES('$email', '$pass', '$name', '$surname');      
           "
         ) or die($this->connection->error);
-        echo 'Signed up. <br>';
       }
       
       #Check login 
       public function logIn($email, $pass) {
         $result = $this->connection->query(
-            "SELECT * 
+            "SELECT user_id,name,surname 
              FROM Users 
              WHERE email='$email' AND password='$pass'
             "
         );
         if($result->num_rows === 0) return false;
+        
+        //Put got data into $row
+        $row = $result->fetch_assoc();
+        $_SESSION['authenticated'] = true;
+        $_SESSION['id'] = $row['user_id'];
+        $_SESSION['name'] = $row['name'];
+        $_SESSION['surname'] = $row['surname'];
         return true;
       }
     

@@ -9,7 +9,7 @@
   
   #if authenticated
   if($data->logIn($email, $pass) === TRUE) {
-    header("location: dashboard.php");
+    header("location: index.php");
     exit;
   }
   

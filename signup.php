@@ -12,6 +12,6 @@
   $data->signUp($email, $pass, $name, $surname);
   
   $data->disconnectMysql();
-
+  header('Location: login.html');
 ?>
 
