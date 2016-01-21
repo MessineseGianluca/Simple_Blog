@@ -27,9 +27,12 @@
     $creator = array (
         'CREATE TABLE Users (
           user_id SMALLINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-          email VARCHAR(255) NOT NULL UNIQUE,
-          password VARCHAR(255) NOT NULL,
-          signing_up_date TIMESTAMP );
+          email VARCHAR(30) NOT NULL UNIQUE,
+          password VARCHAR(16) NOT NULL,
+          signing_up_date TIMESTAMP,
+          name VARCHAR(20) NOT NULL,
+          surname VARCHAR(20) NOT NULL
+          );
         ' ,
        
         'CREATE TABLE Posts (
