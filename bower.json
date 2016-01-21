@@ -1,0 +1,24 @@
+{
+  "name": "Simple_Blog",
+  "homepage": "https://github.com/MessineseGianluca/Simple_Blog",
+  "authors": [
+    "MessineseGianluca <gianluca.messi1@gmail.com>"
+  ],
+  "description": "A simple blog in js and mysql",
+  "main": "index.php",
+  "moduleType": [],
+  "keywords": [
+    "blog"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.6"
+  }
+}

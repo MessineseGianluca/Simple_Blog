@@ -9,10 +9,22 @@
   }
   echo "Benvenuto " . $_SESSION['name']. ' ' . $_SESSION['surname'];
   
-   // remove all session variables
-   #session_unset(); 
-
+  // remove all session variables
+  #session_unset(); 
   // destroy the session 
   #session_destroy(); 
-?> 
+?>
+<html>
+<head>
+  <title> Dashboard </title>
+</head>
+<body>
+  <header>
+    <h1> My Simple Blog </h1>
+  </header>
+  <div class='dashboard'>
+    
+  </div>
+</body>
+</html> 
 
