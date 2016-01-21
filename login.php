@@ -6,9 +6,14 @@
   
   $data = new MysqlConnector();
   $data->connectMysql();
-  /*
-  if($data->login($email, $pass) === TRUE) {
-    
-  } */ 
+  
+  #if authenticated
+  if($data->logIn($email, $pass) === TRUE) {
+    header("location: dashboard.php");
+    exit;
+  }
+  
+  #else come back to login.html  
   $data->disconnectMysql();
+  header("location: login.html");
 ?>

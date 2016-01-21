@@ -42,8 +42,20 @@
           "INSERT INTO Users(email, password, name, surname)
            VALUES('$email', '$pass', '$name', '$surname');      
           "
-        ) or die($data->connection->error);
+        ) or die($this->connection->error);
         echo 'Signed up. <br>';
+      }
+      
+      #Check login 
+      public function logIn($email, $pass) {
+        $result = $this->connection->query(
+            "SELECT * 
+             FROM Users 
+             WHERE email='$email' AND password='$pass'
+            "
+        );
+        if($result->num_rows === 0) return false;
+        return true;
       }
     
       #Disconnect from RDBMS
