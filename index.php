@@ -19,6 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/mycss.css">
+  
 </head>
 <body>
   <div class='container'>
@@ -37,13 +38,13 @@
             <p><?php echo $_SESSION['name']. ' ' . $_SESSION['surname']; ?></p>
           </div>
           
-         <div class="btn-group col-lg-2">
-            <button type="button" class="btn btn-default dropdown-toggle" data-
-            toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" 
+            data-toggle="dropdown">
               <span class="caret"></span>
             </button>
-            <ul class="dropdown-menu">
-              <li><a href="logout.php">Exit</a></li>
+            <ul class="dropdown-menu" >
+              <li><a tabindex="-1" href="logout.php">Log out</a></li>
             </ul>
           </div>
         </div>
@@ -51,7 +52,7 @@
     </div>
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootsrap.min.js"></script>
-</body>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  </body>
 </html> 
 
