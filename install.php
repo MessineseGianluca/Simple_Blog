@@ -37,8 +37,7 @@
        
         'CREATE TABLE Posts (
           post_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-          descrition VARCHAR(255) NOT NULL,
-          title VARCHAR(255),
+          description VARCHAR(255) NOT NULL,
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
           FOREIGN KEY (user_id) REFERENCES Users(user_id) );

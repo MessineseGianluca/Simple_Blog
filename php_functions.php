@@ -51,7 +51,7 @@
         $result = $this->connection->query(
             "SELECT user_id,name,surname 
              FROM Users 
-             WHERE email='$email' AND password='$pass'
+             WHERE email='$email' AND password='$pass';
             "
         );
         if($result->num_rows === 0) return false;
@@ -63,6 +63,15 @@
         $_SESSION['name'] = $row['name'];
         $_SESSION['surname'] = $row['surname'];
         return true;
+      }
+      
+      public function addPost($content) {
+        $id = $_SESSION['id'];  
+        $this->connection->query(
+            "INSERT INTO Posts(description, user_id)
+             VALUES ('$content', '$id'); 
+            "
+        ) or die($this->connection->error);
       }
     
       #Disconnect from RDBMS
