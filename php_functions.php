@@ -65,6 +65,8 @@
         return true;
       }
       
+      
+
       public function addPost($content) {
         $id = $_SESSION['id'];  
         $this->connection->query(
@@ -73,7 +75,20 @@
             "
         ) or die($this->connection->error);
       }
+
+
+      public function getPost() {
+        $result = $this->connection->query(
+            "SELECT * 
+             FROM Posts 
+            "
+        );
+        return $result;
+
+      }
     
+
+
       #Disconnect from RDBMS
       public function disconnectMysql() {
                         

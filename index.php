@@ -1,11 +1,17 @@
 <?php
   session_start();
+  include 'php_functions.php';
   #Create an object for the dbms handlings
   if(!$_SESSION['authenticated'])
   {
     header("Location: login.html");
     exit;
-  }  
+  } 
+
+  $data = new MysqlConnector();
+  
+  $data->connectMysql();
+ 
 ?>
 <!DOCTYPE html>
 <html lang='en'>
@@ -66,6 +72,18 @@
       </div>  
     </div>
     
+    <?php
+      $result = $data->getPost();
+      while($row = $result->fetch_assoc()) {
+        echo "
+          <div class='row'>
+            <div class='col-lg-6'>
+              <h3 class='post'>" . $row['description'] . "</h3>
+            </div>
+          </div>
+        ";
+      }
+    ?>
     
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
