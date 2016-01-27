@@ -42,7 +42,11 @@
           </div>
           
           <div class='col-lg-8 col-md-8' >
-            <p><?php echo $_SESSION['name']. ' ' . $_SESSION['surname']; ?></p>
+            <p class='user'>
+              <?php 
+                echo $_SESSION['name']. ' ' . $_SESSION['surname']; 
+              ?>
+            </p>
           </div>
 
           <div class='dropdown col-lg-2 col-md-2'>
@@ -81,7 +85,8 @@
             <div class='row' style='margin-left:10%'>
               <div class='col-lg-12 col-md-12'>
                 <img src='img/user.jpg' class='img-rounded user-img'>
-                <p style='display: inline-block'> Cognome Nome </p>
+                <p class='user' style='display: inline-block'> Cognome Nome </p>
+                <b><p class='timestamp'>" . $row['sharing_date'] . "</p></b>
                 <div class='description shadow'> 
                   <h3>". $row['description'] . "</h3>
                 </div>

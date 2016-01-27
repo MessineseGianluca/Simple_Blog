@@ -22,7 +22,7 @@ body {margin:0; background-color: #000033}
   margin-bottom: 3px;
 }
 
-p {
+.user {
   color: white;
   font-size: 18px;
 }
@@ -49,4 +49,12 @@ p {
 
 .shadow {
   box-shadow:0 4px 6px rgba(0,0,0,0.5);
+}
+
+.timestamp {
+    display: inline-block;
+    font-size: 9px;
+    color: white;
+    float: right;
+    margin-top: 5%;
 }
