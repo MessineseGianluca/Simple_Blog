@@ -71,7 +71,7 @@
           <textarea class='form-control shadow' style='resize: none' 
           rows='2' name='description'></textarea>
           <input style='float:right; margin-top:5px;' 
-                 class='btn btn-default' type='submit' value='Submit'>
+                 class='btn btn-default' type='submit' value='Share'>
         </form>
       </div>  
     </div>
@@ -85,7 +85,9 @@
             <div class='row' style='margin-left:10%'>
               <div class='col-lg-12 col-md-12'>
                 <img src='img/user.jpg' class='img-rounded user-img'>
-                <p class='user' style='display: inline-block'> Cognome Nome </p>
+                <p class='user' style='display: inline-block'> 
+                  " . $row['surname'] . " " . $row['name'] . "
+                </p>
                 <b><p class='timestamp'>" . $row['sharing_date'] . "</p></b>
                 <div class='description shadow'> 
                   <h3>". $row['description'] . "</h3>

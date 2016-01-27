@@ -79,9 +79,12 @@
 
       public function getPost() {
         $result = $this->connection->query(
-            "SELECT * 
-             FROM Posts 
-             ORDER BY post_id DESC;
+            "SELECT Posts.description, Posts.sharing_date, 
+                    Users.name, Users.surname
+             FROM Posts
+             INNER JOIN Users
+             ON Users.user_id = Posts.user_id
+             ORDER BY sharing_date DESC;
             "
         );
         return $result;
