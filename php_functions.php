@@ -81,6 +81,7 @@
         $result = $this->connection->query(
             "SELECT * 
              FROM Posts 
+             ORDER BY post_id DESC;
             "
         );
         return $result;
