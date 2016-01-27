@@ -39,12 +39,17 @@ body {margin:0; background-color: #000033}
  }
 
 .description {
-  padding: 15px;
+  padding: 0;
   background-color: white;
   border-radius: 4px 4px 4px 4px;
   color: #454545;
   margin:0px;
-  margin-bottom: 25px;
+  margin-bottom: 2px;
+}
+
+.description h3 {
+  padding: 7px 15px 20px 15px;
+  margin: 0px;
 }
 
 .shadow {
@@ -52,9 +57,17 @@ body {margin:0; background-color: #000033}
 }
 
 .timestamp {
-    display: inline-block;
-    font-size: 9px;
-    color: white;
-    float: right;
-    margin-top: 5%;
+  display: inline-block;
+  font-size: 9px;
+  color: white;
+  float: right;
+  margin-top: 5%;
+}
+
+.submit {
+  display: none;  
+}
+
+.comment {
+  margin-bottom: 40px;
 }

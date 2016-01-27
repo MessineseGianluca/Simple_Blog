@@ -35,7 +35,7 @@
         <img class='adder-img' src='img/add-picture.png'>
       </div> 
       
-      <div class='col-lg-4 col-md-4 user-panel' >
+      <div class='col-lg-4 col-md-4 user-panel'>
         <div class='row'>
           <div class='col-lg-2 col-md-2'>
             <img src='img/user.jpg' class='img-rounded user-img'>
@@ -69,9 +69,10 @@
         <form action='post.php' method='post'>
           <label style='color:white'>New post:</label>
           <textarea class='form-control shadow' style='resize: none' 
-          rows='2' name='description'></textarea>
+          rows='2' name='description' id='insert-post'></textarea>
           <input style='float:right; margin-top:5px;' 
-                 class='btn btn-default' type='submit' value='Share'>
+                 class='btn btn-defaul submit' id='submit'
+                 type='submit' value='Share'>
         </form>
       </div>  
     </div>
@@ -82,18 +83,32 @@
         $result = $data->getPost();
         while($row = $result->fetch_assoc()) {
           echo "
-            <div class='row' style='margin-left:10%'>
-              <div class='col-lg-12 col-md-12'>
-                <img src='img/user.jpg' class='img-rounded user-img'>
-                <p class='user' style='display: inline-block'> 
-                  " . $row['surname'] . " " . $row['name'] . "
-                </p>
-                <b><p class='timestamp'>" . $row['sharing_date'] . "</p></b>
-                <div class='description shadow'> 
-                  <h3>". $row['description'] . "</h3>
+            <div class='row comment' style='margin-left:10%'>
+              <div class='row'>
+                <div class='col-lg-12 col-md-12'>
+                  <img src='img/user.jpg' class='img-rounded user-img'>
+                  <p class='user' style='display: inline-block'> 
+                    " . $row['surname'] . " " . $row['name'] . "
+                  </p>
+                  <b><p class='timestamp'>" . $row['sharing_date'] . "</p></b>
+                  <div class='description shadow'> 
+                    <h3 >". $row['description'] . "</h3>
+                  </div>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='col-lg-2 col-md-2'>
+                  <img src='img/user.jpg' class='img-rounded user-img' style='float:right'>
+                </div>
+                <div class='col-lg-10 col-md-10' style=''>
+                  <form action='post.php' method='post'>
+                    <textarea class='form-control col-lg-11' style='resize:none' 
+                    rows='1' name='comment'></textarea>
+                  </form>
                 </div>
               </div>
             </div>
+          
           ";
         }
       ?>
