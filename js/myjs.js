@@ -1,3 +1,5 @@
+$('.elastic-box').elastic();
+
 $('#add').click(function() {
   
   $('#add-post').css('display', 'block');
@@ -9,4 +11,3 @@ $('#insert-post').keyup(function() {
   else 
     $('#submit').css('display', 'none');
 });
-

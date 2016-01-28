@@ -44,7 +44,7 @@
           <div class='col-lg-8 col-md-8' >
             <p class='user'>
               <?php 
-                echo $_SESSION['name']. ' ' . $_SESSION['surname']; 
+                echo $_SESSION['surname']. ' ' . $_SESSION['name']; 
               ?>
             </p>
           </div>
@@ -68,8 +68,10 @@
       <div class="form-group col-lg-8 col-md-8" id='add-post'>
         <form action='post.php' method='post'>
           <label style='color:white'>New post:</label>
-          <textarea class='form-control shadow' style='resize: none' 
-          rows='2' name='description' id='insert-post'></textarea>
+          <textarea class='form-control shadow elastic-box' style='resize: none' 
+          rows='2' name='description' 
+          id='insert-post' placeholder='Insert some text...'></textarea>
+          
           <input style='float:right; margin-top:5px;' 
                  class='btn btn-defaul submit' id='submit'
                  type='submit' value='Share'>
@@ -83,7 +85,7 @@
         $result = $data->getPost();
         while($row = $result->fetch_assoc()) {
           echo "
-            <div class='row comment' style='margin-left:10%'>
+            <div class='row comment' style='margin-left:10%;'>
               <div class='row'>
                 <div class='col-lg-12 col-md-12'>
                   <img src='img/user.jpg' class='img-rounded user-img'>
@@ -96,14 +98,17 @@
                   </div>
                 </div>
               </div>
-              <div class='row'>
-                <div class='col-lg-2 col-md-2'>
-                  <img src='img/user.jpg' class='img-rounded user-img' style='float:right'>
+              <div class='row' >
+                <div class='col-lg-2 col-md-2 nopadding' 
+                style='float: right !important'>
+                  <img src='img/user.jpg' class='img-rounded user-img' 
+                  style='display: inline'>
                 </div>
-                <div class='col-lg-10 col-md-10' style=''>
+                <div class='col-lg-10 col-md-10' style='float:right !important'>
                   <form action='post.php' method='post'>
-                    <textarea class='form-control col-lg-11' style='resize:none' 
-                    rows='1' name='comment'></textarea>
+                    <textarea class='form-control elastic-box 
+                    insert-comment' rows='1' style='display: inline'
+                    name='comment' placeholder='Insert a comment...'></textarea>
                   </form>
                 </div>
               </div>
@@ -117,6 +122,9 @@
   </div>
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src=
+    'bower_components/jakobmattsson-jquery-elastic/jquery.elastic.source.js'>
+  </script>
   <script src="js/myjs.js"></script>
   </body>
 </html> 

@@ -71,3 +71,15 @@ body {margin:0; background-color: #000033}
 .comment {
   margin-bottom: 40px;
 }
+
+.insert-comment{
+  resize: none;
+  font-size: 12px;
+  padding: 2px 4px;
+  display: inline-block;
+}
+
+.nopadding {
+   padding: 0 !important;
+   margin: 0 !important;
+}
