@@ -18,7 +18,8 @@
   <title> Dashboard </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" 
+  href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/mycss.css">
   
 </head>
@@ -82,39 +83,84 @@
     <div class='row'>
       <div class='col-lg-8 col-md-8'> 
       <?php
-        $result = $data->getPost();
-        while($row = $result->fetch_assoc()) {
+        $result = $data->getPosts();
+        while($post = $result->fetch_assoc()) {
+           
+          #LOAD COMMENTS
+          $comments = $data->getComments($post['post_id']);  
+      
           echo "
-            <div class='row comment' style='margin-left:10%;'>
+            <div class='row' style='margin-left:10%; margin-bottom: 5%;'>
+              
               <div class='row'>
                 <div class='col-lg-12 col-md-12'>
                   <img src='img/user.jpg' class='img-rounded user-img'>
                   <p class='user' style='display: inline-block'> 
-                    " . $row['surname'] . " " . $row['name'] . "
+                    " . $post['surname'] . " " . $post['name'] . "
                   </p>
-                  <b><p class='timestamp'>" . $row['sharing_date'] . "</p></b>
-                  <div class='description shadow'> 
-                    <h3 >". $row['description'] . "</h3>
+                  <b><p class='timestamp'>" . $post['sharing_date'] . "</p></b>
+                  <div class='description shadow '> 
+                    <p>". $post['description'] . "</p>
                   </div>
                 </div>
               </div>
-              <div class='row' >
-                <div class='col-lg-2 col-md-2 nopadding' 
-                style='float: right !important'>
-                  <img src='img/user.jpg' class='img-rounded user-img' 
-                  style='display: inline'>
-                </div>
-                <div class='col-lg-10 col-md-10' style='float:right !important'>
-                  <form action='post.php' method='post'>
-                    <textarea class='form-control elastic-box 
-                    insert-comment' rows='1' style='display: inline'
-                    name='comment' placeholder='Insert a comment...'></textarea>
-                  </form>
-                </div>
-              </div>
-            </div>
-          
+              <div class = 'jumbotron' style='padding: 0 7%; margin: 2px 0px'>                
           ";
+          
+          if ($comments->num_rows !== 0) {
+            echo "
+                <div class='row'>
+                  <div class='col-12-lg col-12-md nopadding'>
+                    <b><p class='nopadding' style=''> Comments: </p></b>
+                  </div>
+                </div>
+            ";
+            while($comment = $comments->fetch_assoc()) {
+              echo "
+                <div class='row' style='border: 1px red solid;'>
+                  <div class='row'>
+                    <div class='col-lg-1 col-md-1'>
+                      <img src='img/user.jpg' class='img-rounded comment-img' 
+                      style='display: inline'>
+                    </div>
+                    <div class='col-lg-11 col-md-11 nopadding'>
+                      <b><p style='font-size:14px' class='nopadding'> Nome e cognome </p></b>
+                    </div>
+                  </div>
+                    
+                  <div class='row'>
+                    <div class='col-lg-10 col-md-10'>
+                      <p class='nopadding'>" . $comment['description'] . "</p>
+                    </div>
+                  </div>
+                </div>
+              "; 
+              }
+            }
+            
+            echo "
+              </div>
+                <div class='row' >
+                  <div class='col-lg-2 col-md-2 nopadding' 
+                  style='float: right !important'>
+                    <img src='img/user.jpg' class='img-rounded user-img' 
+                    style='display: inline'>
+                  </div>
+                  <div class='col-lg-10 col-md-10' style='float:right !important'>
+                    <form action='comment.php' method='post'>
+                      <textarea class='form-control elastic-box 
+                      insert-comment' rows='1' style='display: inline'
+                      name='comment' placeholder='Insert a comment...'></textarea>
+                      <input type='text' name='post' style='display:none'
+                      value=" . $post['post_id'] . " />
+                      <input type='submit' value='Comment' 
+                      class='btn btn-defaul btn-xs' style='margin-top:2px;'/>
+                    </form>
+                  </div>
+                </div>
+            
+              </div>         
+            ";
         }
       ?>
       </div>

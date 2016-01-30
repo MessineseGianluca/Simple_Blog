@@ -1,5 +1,7 @@
 <?php
 session_start();
+$_SESSION['authenticated'] = false;
+
 // remove all session variables
 session_unset(); 
 

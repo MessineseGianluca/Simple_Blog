@@ -75,11 +75,11 @@
             "
         ) or die($this->connection->error);
       }
+      
 
-
-      public function getPost() {
-        $result = $this->connection->query(
-            "SELECT Posts.description, Posts.sharing_date, 
+      public function getPosts() {
+        $posts = $this->connection->query(
+            "SELECT Posts.description, Posts.sharing_date, Posts.post_id,
                     Users.name, Users.surname
              FROM Posts
              INNER JOIN Users
@@ -87,12 +87,38 @@
              ORDER BY sharing_date DESC;
             "
         );
-        return $result;
+        return $posts;
 
       }
+
+      public function getComments($post) {
+        $comments = $this->connection->query(
+            "SELECT Comments.description, Comments.sharing_date, 
+                    Users.name, Users.surname
+             FROM Comments
+             INNER JOIN Users
+             ON Comments.post_id = '$post'
+             ORDER BY sharing_date;
+            "
+        );
+        return $comments;
+      }
     
+      public function addComment() {
+        echo $_SESSION['id'] . $_SESSION['name'] . $_SESSION['surname'] . $_POST['comment'] . $_POST['post'];
+        $id = $_SESSION['id'];
+        $comment = $_POST['comment'];
+        $post = $_POST['post'];
 
+        $this->connection->query(
+            "INSERT INTO Comments (description, user_id, post_id)
+             VALUES ('$comment', '$id', '$post');
+            "
+        ) or die($this->connection->error);
+      }
+      
 
+      
       #Disconnect from RDBMS
       public function disconnectMysql() {
                         

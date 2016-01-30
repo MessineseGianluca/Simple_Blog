@@ -45,7 +45,7 @@
         
         'CREATE TABLE Comments (
           comment_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-          descrition VARCHAR(255) NOT NULL,
+          description VARCHAR(255) NOT NULL,
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
           post_id INT UNSIGNED NOT NULL,

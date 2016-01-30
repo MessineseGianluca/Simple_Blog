@@ -47,9 +47,10 @@ body {margin:0; background-color: #000033}
   margin-bottom: 2px;
 }
 
-.description h3 {
+.description p {
   padding: 7px 15px 20px 15px;
   margin: 0px;
+  font-size: 25px;
 }
 
 .shadow {
@@ -80,6 +81,11 @@ body {margin:0; background-color: #000033}
 }
 
 .nopadding {
-   padding: 0 !important;
-   margin: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.comment-img {
+  width: 20px;
+  height: 20px;
 }
