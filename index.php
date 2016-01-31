@@ -103,54 +103,68 @@
                     <p>". $post['description'] . "</p>
                   </div>
                 </div>
-              </div>
-              <div class = 'jumbotron' style='padding: 0 7%; margin: 2px 0px'>                
+              </div>               
           ";
           
           if ($comments->num_rows !== 0) {
             echo "
+              <div class = 'jumbotron row' 
+              style='padding: 0 7% 3% 7%; margin: 2px 0px'> 
+                
                 <div class='row'>
                   <div class='col-12-lg col-12-md nopadding'>
-                    <b><p class='nopadding' style=''> Comments: </p></b>
+                    <b><p class='nopadding'> Comments: </p></b>
                   </div>
                 </div>
             ";
             while($comment = $comments->fetch_assoc()) {
               echo "
-                <div class='row' style='border: 1px red solid;'>
+                <div class='row shadow comment-box'>
                   <div class='row'>
+                  
                     <div class='col-lg-1 col-md-1'>
-                      <img src='img/user.jpg' class='img-rounded comment-img' 
-                      style='display: inline'>
+                      <img src='img/user.jpg' class='img-rounded comment-img'>
                     </div>
-                    <div class='col-lg-11 col-md-11 nopadding'>
-                      <b><p style='font-size:14px' class='nopadding'> Nome e cognome </p></b>
+                    
+                    <div class='col-lg-7 col-md-7 nopadding'>
+                      <h4 class='nopadding'> 
+                        " .$comment['surname'] . " " . $comment['name'] . " 
+                      </h4>
                     </div>
+                    
+                    <div class='col-lg-4 col-md-4'>
+                      <p style='font-size: 9px; margin: 2px; float: right'>
+                        " . $comment['sharing_date'] . "
+                      </p>
+                    </div>
+                    
                   </div>
                     
                   <div class='row'>
-                    <div class='col-lg-10 col-md-10'>
-                      <p class='nopadding'>" . $comment['description'] . "</p>
+                    <div class='col-lg-12 col-md-12'>
+                      <h5 class='comment'>" . $comment['description'] . "</h5>
                     </div>
                   </div>
                 </div>
               "; 
               }
+              echo "</div>";
             }
             
             echo "
-              </div>
                 <div class='row' >
                   <div class='col-lg-2 col-md-2 nopadding' 
                   style='float: right !important'>
                     <img src='img/user.jpg' class='img-rounded user-img' 
                     style='display: inline'>
                   </div>
-                  <div class='col-lg-10 col-md-10' style='float:right !important'>
+                  <div class='col-lg-10 col-md-10' style=''>
                     <form action='comment.php' method='post'>
-                      <textarea class='form-control elastic-box 
-                      insert-comment' rows='1' style='display: inline'
-                      name='comment' placeholder='Insert a comment...'></textarea>
+                      
+                      <textarea class='form-control elastic-box insert-comment'
+                      name='comment' rows='1'
+                      placeholder='Insert a comment...'></textarea>
+                      
                       <input type='text' name='post' style='display:none'
                       value=" . $post['post_id'] . " />
                       <input type='submit' value='Comment' 

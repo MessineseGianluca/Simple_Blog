@@ -105,7 +105,6 @@
       }
     
       public function addComment() {
-        echo $_SESSION['id'] . $_SESSION['name'] . $_SESSION['surname'] . $_POST['comment'] . $_POST['post'];
         $id = $_SESSION['id'];
         $comment = $_POST['comment'];
         $post = $_POST['post'];

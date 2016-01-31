@@ -54,7 +54,7 @@ body {margin:0; background-color: #000033}
 }
 
 .shadow {
-  box-shadow:0 4px 6px rgba(0,0,0,0.5);
+  box-shadow:0 0 1px 0 rgba(0,0,0,0.9);
 }
 
 .timestamp {
@@ -70,7 +70,8 @@ body {margin:0; background-color: #000033}
 }
 
 .comment {
-  margin-bottom: 40px;
+  padding: 2px 30px;
+  margin: 0;
 }
 
 .insert-comment{
@@ -88,4 +89,10 @@ body {margin:0; background-color: #000033}
 .comment-img {
   width: 20px;
   height: 20px;
+}
+
+.comment-box {
+  background-color: white; 
+  border-radius: 4px 4px 4px 4px; 
+  margin: 6px 0;
 }
