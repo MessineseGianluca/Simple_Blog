@@ -37,7 +37,7 @@
        
         'CREATE TABLE Posts (
           post_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
-          description VARCHAR(255) NOT NULL,
+          description TEXT NOT NULL,
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
           FOREIGN KEY (user_id) REFERENCES Users(user_id) );
@@ -90,4 +90,4 @@
   #Disconnect from Mysql
   $installer->disconnectMysql();
  
-?>
+

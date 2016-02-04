@@ -13,5 +13,5 @@
   
   $data->disconnectMysql();
   header('Location: login.html');
-?>
+
 

@@ -5,4 +5,4 @@
       public $password = 'password';
       public $dbname = 'blogdb';
   } 
-?>
+

@@ -9,4 +9,4 @@
   
   $data->disconnectMysql();
   header("location: index.php");
-?>
+

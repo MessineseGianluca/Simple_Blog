@@ -5,4 +5,4 @@
   $data->addComment();
   $data->disconnectMysql();
   header("location: index.php");
-?>
+

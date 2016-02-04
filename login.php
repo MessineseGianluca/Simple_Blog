@@ -16,4 +16,4 @@
   #else come back to login.html  
   $data->disconnectMysql();
   header("location: login.html");
-?>
+
