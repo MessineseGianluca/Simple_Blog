@@ -95,7 +95,7 @@
               <div class='row'>
                 <div class='col-lg-12 col-md-12'>
                   <img src='img/user.jpg' class='img-rounded user-img'>
-                  <p class='user' style='display: inline-block'> 
+                  <p class='user' styfrom le='display: inline-block'> 
                     " . $post['surname'] . " " . $post['name'] . "
                   </p>
                   <b><p class='timestamp'>" . $post['sharing_date'] . "</p></b>

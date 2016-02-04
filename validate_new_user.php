@@ -17,10 +17,17 @@
   }
   
   
+  
   else {
     $data = new MysqlConnector();
     $data->connectMysql();
-  
+    
+    if($data->isRegistred($email)) {
+      $_SESSION['message'] = "Email already exists.";
+      header('Location: signup.php');
+      exit;
+    }
+    
     $data->signUp($email, $pass, $name, $surname);
   
     $data->disconnectMysql();

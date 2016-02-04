@@ -46,6 +46,18 @@
         ) or die($this->connection->error);
       }
       
+      #Return true if the email  already exists, else return false 
+      public function isRegistred($email) {
+        $result = $this->connection->query(
+            "SELECT email
+             FROM Users 
+             WHERE email='$email';
+            "
+        );
+        if($result->num_rows === 1) return true;
+        return false;
+      }
+      
       #Check login 
       public function logIn($email, $pass) {
         $result = $this->connection->query(
@@ -94,10 +106,11 @@
       public function getComments($post) {
         $comments = $this->connection->query(
             "SELECT Comments.description, Comments.sharing_date, 
-                    Users.name, Users.surname
+                    Comments.user_id, Users.name, Users.surname, Users.user_id
              FROM Comments
              INNER JOIN Users
-             ON Comments.post_id = '$post'
+             ON (Comments.post_id = '$post') AND 
+                (Comments.user_id = Users.user_id) 
              ORDER BY sharing_date;
             "
         );
