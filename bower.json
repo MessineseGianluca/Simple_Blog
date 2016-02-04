@@ -19,6 +19,8 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.3.6"
+    "bootstrap": "~3.3.6",
+    "jquery": "^2.2.0",
+    "jakobmattsson-jquery-elastic": "^1.6.11"
   }
 }
