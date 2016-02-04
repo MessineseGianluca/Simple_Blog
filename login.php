@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
+  <?php
+    session_start();
+    echo '<p style="color:red">' . $_SESSION['login_message'] . '</p> '; 
+  ?>
   <form name='signin' action='validate_user.php' method='post'>
     E-mail:<br><input type='email' name='email' autofocus required>
     <br>

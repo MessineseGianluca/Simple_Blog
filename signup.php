@@ -8,7 +8,7 @@
 <body>
   <?php
     session_start();
-    echo '<p style="color:red">' . $_SESSION['message'] . '</p> '; 
+    echo '<p style="color:red">' . $_SESSION['signup_message'] . '</p> '; 
   ?>
     <form name='signup' action='validate_new_user.php' method='post'>
     Name: <br><input type='text' maxlength='20' name='name' auofocus required><br>
@@ -19,7 +19,7 @@
     <br><br>
     <input type='submit' value='Sign up'> or 
     <input type='button' value='Login'  
-    onclick = 'window.open("login.html", "_self")'>
+    onclick = 'window.open("login.php", "_self")'>
   </form>
   
   

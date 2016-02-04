@@ -2,7 +2,7 @@
   session_start();
   include 'php_functions.php';
   
-  $_SESSION['message'] = '';
+  $_SESSION['signup_message'] = '';
 
   $name = $_POST['name'];
   $surname = $_POST['surname'];
@@ -11,7 +11,7 @@
   $email = $_POST['email'];
   
   if($pass2 !== $pass) {
-    $_SESSION['message'] = "Please insert equal passwords.";
+    $_SESSION['signup_message'] = "Please insert equal passwords.";
     header('Location: signup.php');
     exit;
   }
@@ -23,7 +23,7 @@
     $data->connectMysql();
     
     if($data->isRegistred($email)) {
-      $_SESSION['message'] = "Email already exists.";
+      $_SESSION['signup_message'] = "Email already exists.";
       header('Location: signup.php');
       exit;
     }
@@ -32,6 +32,6 @@
   
     $data->disconnectMysql();
     
-    header('Location: login.html');
+    header('Location: login.php');
   }
 
