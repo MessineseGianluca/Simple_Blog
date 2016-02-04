@@ -33,7 +33,7 @@
           );
         }
         $this->status = "Connected to the server. <br>";
-        echo $this->status;
+        //echo $this->status;
         
       }  
     
@@ -123,7 +123,7 @@
                         
         $this->connection->close() or die(mysql_error());
         $this->status = "Disconnected from the server. <br>";
-        echo $this->status;
+        //echo $this->status;
       
       }
   
