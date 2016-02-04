@@ -28,7 +28,7 @@
         'CREATE TABLE Users (
           user_id SMALLINT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
           email VARCHAR(30) NOT NULL UNIQUE,
-          password VARCHAR(16) NOT NULL,
+          password VARCHAR(255) NOT NULL,
           signing_up_date TIMESTAMP,
           name VARCHAR(20) NOT NULL,
           surname VARCHAR(20) NOT NULL
@@ -59,7 +59,7 @@
   }
    
    
-  #####################Calls methods########################à
+  #####################Calls methods########################
      
   #Create Mysql object 
   $installer = new MysqlConnector();

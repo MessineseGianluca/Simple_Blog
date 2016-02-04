@@ -16,8 +16,6 @@
     exit;
   }
   
-  
-  
   else {
     $data = new MysqlConnector();
     $data->connectMysql();
@@ -27,6 +25,8 @@
       header('Location: signup.php');
       exit;
     }
+    
+    $pass = cryptPass($pass);
     
     $data->signUp($email, $pass, $name, $surname);
   

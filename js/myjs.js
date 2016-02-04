@@ -11,3 +11,4 @@ $('#insert-post').keyup(function() {
   else 
     $('#submit').css('display', 'none');
 });
+

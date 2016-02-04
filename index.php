@@ -158,12 +158,13 @@
                     <img src='img/user.jpg' class='img-rounded user-img' 
                     style='display: inline'>
                   </div>
-                  <div class='col-lg-10 col-md-10' style=''>
+                  <div class='col-lg-10 col-md-10'>
                     <form action='comment.php' method='post'>
                       
                       <textarea class='form-control elastic-box insert-comment'
                       name='comment' rows='1'
-                      placeholder='Insert a comment...'></textarea>
+                      placeholder='Insert a comment (max 255) ...'
+                      maxlength='255'></textarea>
                       
                       <input type='text' name='post' style='display:none'
                       value=" . $post['post_id'] . " />

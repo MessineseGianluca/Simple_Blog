@@ -61,20 +61,27 @@
       #Check login 
       public function logIn($email, $pass) {
         $result = $this->connection->query(
-            "SELECT user_id,name,surname 
+            "SELECT user_id, name, surname, password 
              FROM Users 
-             WHERE email='$email' AND password='$pass';
+             WHERE email='$email';
             "
         );
+        
         if($result->num_rows === 0) return false;
         
         //Put got data into $row
         $row = $result->fetch_assoc();
-        $_SESSION['authenticated'] = true;
-        $_SESSION['id'] = $row['user_id'];
-        $_SESSION['name'] = $row['name'];
-        $_SESSION['surname'] = $row['surname'];
-        return true;
+        
+        if(crypt($pass, $row['password']) == $row['password']) {
+          $_SESSION['authenticated'] = true;
+          $_SESSION['id'] = $row['user_id'];
+          $_SESSION['name'] = $row['name'];
+          $_SESSION['surname'] = $row['surname'];
+          
+          return true;
+        }
+        
+        return false;
       }
       
       
@@ -141,6 +148,21 @@
       }
   
   }
-
-
- 
+  
+  
+  
+  function cryptPass($pass, $rounds = 10) {
+  
+    $salt = '';
+    #merge all elements into the same array. It contains all the possible
+    #characters that could be used to generate a random salt
+    $saltChars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
+    
+    #generate a random salt of 22 characters
+    for($i = 0; $i < 22; $i++) {
+      #array_rand chose a random index and takes the corrispent element
+      $salt .= $saltChars[array_rand($saltChars)];
+    }
+  
+    return crypt($pass, sprintf('$2y$%02d$', $rounds) . $salt);
+  }
