@@ -15,13 +15,13 @@
 ?>
 <!DOCTYPE html>
 <html lang='en'>
+<head>
   <title> Dashboard </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" 
   href="bower_components/bootstrap/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="css/mycss.css">
-  
+  <link rel="stylesheet" href="css/mycss.css">  
 </head>
 <body>
   <div class='container'>
@@ -45,7 +45,7 @@
           <div class='col-lg-8 col-md-8' >
             <p class='user'>
               <?php 
-                echo $_SESSION['surname']. ' ' . $_SESSION['name']; 
+                echo $_SESSION['surname'] . " " . $_SESSION['name'] ; 
               ?>
             </p>
           </div>
@@ -70,8 +70,8 @@
         <form action='post.php' method='post'>
           <label style='color:white'>New post:</label>
           <textarea class='form-control shadow elastic-box' style='resize: none' 
-          rows='2' name='description' 
-          id='insert-post' placeholder='Insert some text...'></textarea>
+          rows='2' name='description' id='insert-post' 
+          placeholder='Insert some text...'></textarea>
           
           <input style='float:right; margin-top:5px;' 
                  class='btn btn-defaul submit' id='submit'
@@ -84,6 +84,37 @@
       <div class='col-lg-8 col-md-8'> 
       <?php
         $result = $data->getPosts();
+        function printCommentCode($name, $surname, $comment, $comment_date) { 
+            echo "
+                <div class='row shadow comment-box'>
+                  <div class='row'>
+                  
+                    <div class='col-lg-1 col-md-1'>
+                      <img src='img/user.jpg' class='img-rounded comment-img'>
+                    </div>
+                    
+                    <div class='col-lg-7 col-md-7 nopadding'>
+                      <h4 class='username nopadding'> 
+                        " . $surname . " " . $name . " 
+                      </h4>
+                    </div>
+                    
+                    <div class='col-lg-4 col-md-4'>
+                      <p class='date' style='font-size: 9px; margin: 2px; float: right'>
+                        " . $comment_date . "
+                      </p>
+                    </div>
+                    
+                  </div>
+                    
+                  <div class='row'>
+                    <div class='col-lg-12 col-md-12'>
+                      <h5 class='comment'>" . $comment . "</h5>
+                    </div>
+                  </div>
+                </div>
+              ";
+        } 
         while($post = $result->fetch_assoc()) {
            
           #LOAD COMMENTS
@@ -95,7 +126,7 @@
               <div class='row'>
                 <div class='col-lg-12 col-md-12'>
                   <img src='img/user.jpg' class='img-rounded user-img'>
-                  <p class='user' styfrom le='display: inline-block'> 
+                  <p class='user' style='display: inline-block'> 
                     " . $post['surname'] . " " . $post['name'] . "
                   </p>
                   <b><p class='timestamp'>" . $post['sharing_date'] . "</p></b>
@@ -108,7 +139,7 @@
           
           if ($comments->num_rows !== 0) {
             echo "
-              <div class = 'jumbotron row' 
+              <div class = 'jumbotron row' id='" . $post['post_id'] . "'
               style='padding: 0 7% 3% 7%; margin: 2px 0px'> 
                 
                 <div class='row'>
@@ -117,39 +148,17 @@
                   </div>
                 </div>
             ";
+      
             while($comment = $comments->fetch_assoc()) {
-              echo "
-                <div class='row shadow comment-box'>
-                  <div class='row'>
-                  
-                    <div class='col-lg-1 col-md-1'>
-                      <img src='img/user.jpg' class='img-rounded comment-img'>
-                    </div>
-                    
-                    <div class='col-lg-7 col-md-7 nopadding'>
-                      <h4 class='nopadding'> 
-                        " .$comment['surname'] . " " . $comment['name'] . " 
-                      </h4>
-                    </div>
-                    
-                    <div class='col-lg-4 col-md-4'>
-                      <p style='font-size: 9px; margin: 2px; float: right'>
-                        " . $comment['sharing_date'] . "
-                      </p>
-                    </div>
-                    
-                  </div>
-                    
-                  <div class='row'>
-                    <div class='col-lg-12 col-md-12'>
-                      <h5 class='comment'>" . $comment['description'] . "</h5>
-                    </div>
-                  </div>
-                </div>
-              "; 
-              }
-              echo "</div>";
+              printCommentCode(
+                $_SESSION['name'], 
+                $_SESSION['surname'], 
+                $comment['description'], 
+                $comment['sharing_date']
+              );
             }
+            echo "</div>";
+          }
             
             echo "
                 <div class='row' >
@@ -159,17 +168,20 @@
                     style='display: inline'>
                   </div>
                   <div class='col-lg-10 col-md-10'>
-                    <form action='comment.php' method='post'>
+                    <form class='comment-form' action='' method='post' >
                       
                       <textarea class='form-control elastic-box insert-comment'
-                      name='comment' rows='1'
-                      placeholder='Insert a comment (max 255) ...'
-                      maxlength='255'></textarea>
+                      name='comment' rows='1' maxlength='255'
+                      placeholder='Insert a comment (max 255) ...'></textarea>
                       
                       <input type='text' name='post' style='display:none'
                       value=" . $post['post_id'] . " />
-                      <input type='submit' value='Comment' 
-                      class='btn btn-defaul btn-xs' style='margin-top:2px;'/>
+                      <button type='button' 
+                      class='btn btn-defaul btn-xs' 
+                      style='margin-top:2px;'
+                      data-id='" . $post['post_id'] . "'> 
+                        Comment
+                      </button>
                     </form>
                   </div>
                 </div>
@@ -181,12 +193,22 @@
       </div>
     </div>
   </div>
+
+  <div class='hidden codesample'>
+    <?php printCommentCode("", "", "", ""); ?>
+  </div>
+
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src=
     'bower_components/jakobmattsson-jquery-elastic/jquery.elastic.source.js'>
   </script>
+  <script>
+    firstname = "<?php echo $_SESSION['name']; ?>";
+    lastname =  "<?php echo $_SESSION['surname']; ?>";
+    userId = "<?php echo $_SESSION['id']; ?>";
+  </script>
   <script src="js/myjs.js"></script>
-  </body>
+</body>
 </html> 
 
