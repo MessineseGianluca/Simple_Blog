@@ -100,16 +100,16 @@
                   </div>
                     
                   <div class='col-lg-7 col-md-7 nopadding'>
-                    <h4 class='nopadding username'>
-                      " . $surname . " " . $name . " 
-                    </h4>
+                    <h4 class='nopadding username'>" 
+                      . $surname . " " . $name . 
+                    "</h4>
                   </div>
                     
                   <div class='col-lg-4 col-md-4'>
                     <p class='date' style='font-size: 9px; 
-                    margin: 2px; float: right'>
-                      " . $comment_date . "
-                    </p>
+                    margin: 2px; float: right'>" 
+                      . $comment_date . 
+                    "</p>
                   </div>
                 </div>
                     
@@ -223,7 +223,6 @@
   <script>
     firstname = "<?php echo $_SESSION['name']; ?>";
     lastname =  "<?php echo $_SESSION['surname']; ?>";
-    userId = "<?php echo $_SESSION['id']; ?>";
   </script>
 
   <script src="js/myjs.js"></script>
