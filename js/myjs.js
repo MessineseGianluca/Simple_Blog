@@ -13,11 +13,10 @@ $('#insert-post').keyup(function() {
 });
 
 
-
+//When the page is fully loaded
 $( document ).ready(function() {
-
+  //When the comment button is click
   $('.comment-form button').click( function() {
-      alert("entrato");
     post($(this).attr("data-id"));
   });
 
@@ -25,40 +24,40 @@ $( document ).ready(function() {
 
 
 function post(postId) {
-  
-  var comment = $("." + "insert-comment" + postId).val();
-  console.log(comment);
-  /* 
+  //comment inserted
+  var comment = $(".insert-comment" + postId).val();
+  //name of the commentator
   var name = firstname + " " + lastname;
+  //codesample of a comment
   var commentCode = $(".codesample").html();
   
+  console.log(commentCode);
   $(commentCode).find(".username").text(name);
   $(commentCode).find(".date").text(Date());
   $(commentCode).find(".comment").text(comment);
-
+  
   comment_post = $("#" + postId).html() + commentCode;
   
   if(comment)
   {
-    alert("entrato");
+    //open an ajax comunication with comment.php
+    //and send him comment, postId. If success, 
+    //executes the function 
     $.ajax
     ({
       type: 'post',
       url: 'comment.php',
-      data: 
-      {
+      data: {
         comment: comment,
         post: postId
       },
-      success: function (response) 
-      {
+      success: function() {
         
         $("#" + postId).html( comment_post );
-        alert(postId);
-        $(".insert-comment").val("");
-  
+        $(".insert-comment" + postId).val("");
       }
     });
-  }*/
+  }
+
   return false;
 }

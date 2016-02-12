@@ -187,7 +187,7 @@
                     ' 
                     placeholder='Insert a comment (max 255) ...'></textarea>
 
-                    <input type='text' name='post' style='display:none'
+                    <input type='text' name='post' class='hidden'
                     value=" . $post['post_id'] . " />
 
                     <button type='button' class='btn btn-defaul btn-xs' 
@@ -206,7 +206,7 @@
     </div>
   </div>
   
-  <!-- A div for storing a code sample of comment to print --> 
+  <!-- A div for storing a codesample of a general comment --> 
   <div class='hidden codesample '>
     <?php printCommentCode("", "", "", ""); ?>
   </div>
