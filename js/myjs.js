@@ -25,7 +25,7 @@ $( document ).ready(function() {
 
 function post(postId) {
 
-  //Date in SQL format
+  //Date in SQL format 
   var date = new Date();
   date = date.getUTCFullYear() + '-' +
     ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +

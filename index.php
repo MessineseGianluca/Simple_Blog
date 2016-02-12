@@ -23,50 +23,56 @@
   <link rel="stylesheet" href="css/mycss.css">  
 </head>
 <body>
-  <!-- Contain all -->
-  <div class='container'>
-    
-    <!-- PAGE HEADER -->
-    <div class='page-header'>
-      <h1><b> My Simple Blog </b></h1>
-    </div>
-    
-    <!-- USER PANEL AND ADD-POST PANEL -->
-    <div class='row'>
-      <!-- Icons for adding posts -->
-      <div class="col-lg-8 col-md-8">  
-        <!-- A panel who contains items for insert new post-->
-        <img class='adder-img' src='img/add.png' id='add'>
-        <img class='adder-img' src='img/add-picture.png'>
-      </div> 
-      <!-- User panel -->
-      <div class='col-lg-4 col-md-4 user-panel'> 
-        <div class='row'>
-          <div class='col-lg-2 col-md-2'>
-            <img src='img/user.jpg' class='img-rounded user-img'>
-          </div>
-          
-          <div class='col-lg-8 col-md-8' >
-            <p class='user'>
-              <?php 
-                echo $_SESSION['surname'] . " " . $_SESSION['name'] ; 
-              ?>
-            </p>
-          </div>
 
-          <div class='dropdown col-lg-2 col-md-2'>
-            <button class='btn btn-default dropdown-toggle' type='button' 
-            data-toggle='dropdown'>
-              <span class='caret'></span>
-            </button>
-            <ul class='dropdown-menu dropdown-menu-right' >
-              <li><a tabindex='-1' href='logout.php'>Log out</a></li>
-            </ul>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">BeSocial</a>
+      </div>
+
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <form class="navbar-form navbar-left" role="search">
+          <div class="form-group">
+            <input type="text" class="form-control" placeholder="Search">
           </div>
-        </div>
-      </div>     
-    </div>
-    
+          <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            
+            <p class="navbar-text pull-right">
+              <a href="#" class="navbar-link">
+                <?php 
+                  echo $_SESSION['surname'] . " " . $_SESSION['name'] ; 
+                ?>
+              </a> 
+            </p>
+            <span class='glyphicon glyphicon-user img-rounded navbar-brand pull-right'></span>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+            <ul class="dropdown-menu">
+              <li><a href="#">Profile</a></li>
+              <li><a href="#">Account</a></li>
+              <li role="separator" class="divider"></li>
+              <li><a href="logout.php">Logout</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+  </nav> 
+   
+  <!-- Contain all -->
+  <div class='container-fluid'>
     <!-- A row for new posts -->
     <div class='row'style='margin-bottom: 20px;'>
       <div class="form-group col-lg-8 col-md-8" id='add-post'>
