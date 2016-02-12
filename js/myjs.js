@@ -17,27 +17,30 @@ $('#insert-post').keyup(function() {
 $( document ).ready(function() {
 
   $('.comment-form button').click( function() {
-      post($(this).attr("data-id"));
+      alert("entrato");
+    post($(this).attr("data-id"));
   });
 
 });
 
 
-function post(postId)
-{
-  var comment = $(".insert-comment").val();
+function post(postId) {
+  
+  var comment = $("." + "insert-comment" + postId).val();
+  console.log(comment);
+  /* 
   var name = firstname + " " + lastname;
   var commentCode = $(".codesample").html();
   
-  $(commentCode).find(".username").html(name);
-  $(commentCode).find(".date").html(Date());
-  $(commentCode).find(".comment").html(comment);
-  
-  //add comment and data
+  $(commentCode).find(".username").text(name);
+  $(commentCode).find(".date").text(Date());
+  $(commentCode).find(".comment").text(comment);
+
   comment_post = $("#" + postId).html() + commentCode;
   
   if(comment)
   {
+    alert("entrato");
     $.ajax
     ({
       type: 'post',
@@ -51,10 +54,11 @@ function post(postId)
       {
         
         $("#" + postId).html( comment_post );
-        $("#commentarea").val("");
+        alert(postId);
+        $(".insert-comment").val("");
   
       }
     });
-  }
+  }*/
   return false;
 }

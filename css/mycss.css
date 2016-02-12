@@ -74,7 +74,7 @@ body {margin:0; background-color: #000033}
   margin: 0;
 }
 
-.insert-comment{
+*[class^='insert-comment'], *[class*='insert-comment'] {
   resize: none;
   font-size: 12px;
   padding: 2px 4px;
