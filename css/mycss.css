@@ -1,98 +1,44 @@
-body {background-color: white}
-
-.page-header{ text-align: center;}
-
-.page-header h1{color: white; }
-
-.container {
-  width: 70%;
-  margin: auto;
-  /*background-color: rgba(245, 245, 245, 1);*/
-  /*border: 1px red solid;*/
+.container {  
+  width: 50%;
+  margin-top: 60px;
 }
 
-.user-panel {
-  float: right;
-  /*border: 1px red solid;*/
+//Resize glyphicon
+.gi-2x{font-size: 2em;}
+.gi-3x{font-size: 3em;}
+.gi-4x{font-size: 4em;}
+.gi-5x{font-size: 5em;}
+
+.all-comments{
+  display: none;
 }
 
 .user-img {
   width: 35px;
   height: 35px;
-  margin-bottom: 3px;
 }
 
-.user {
-  color: white;
-  font-size: 18px;
-}
-
-.adder-img {
-  width: 40px;
-  height: 40px;
-}
-
-#add-post {
-  margin-top: 10px;
+.write-post {
   display: none;
-
- }
-
-.description {
-  padding: 0;
-  background-color: white;
-  border-radius: 4px 4px 4px 4px;
-  color: #454545;
-  margin:0px;
-  margin-bottom: 2px;
 }
 
-.description p {
-  padding: 7px 15px 20px 15px;
-  margin: 0px;
-  font-size: 25px;
-}
-
-.shadow {
-  box-shadow:0 0 1px 0 rgba(0,0,0,0.9);
-}
-
-.timestamp {
-  display: inline-block;
+.date {
   font-size: 9px;
-  color: white;
-  float: right;
-  margin-top: 5%;
 }
 
 .submit {
   display: none;  
 }
 
-.comment {
-  padding: 2px 30px;
-  margin: 0;
+.like {
+  color: red;
 }
 
-*[class^='insert-comment'], *[class*='insert-comment'] {
-  resize: none;
-  font-size: 12px;
-  padding: 2px 4px;
-  display: inline-block;
+.comm {
+  color: blue;
 }
 
 .nopadding {
   padding: 0 !important;
   margin: 0 !important;
-}
-
-.comment-img {
-  width: 20px;
-  height: 20px;
-}
-
-.comment-box {
-  background-color: white; 
-  border-radius: 4px 4px 4px 4px; 
-  margin: 6px 0;
 }

@@ -23,7 +23,8 @@
   <link rel="stylesheet" href="css/mycss.css">  
 </head>
 <body>
-
+  
+  <!-- NAVBAR -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
@@ -70,145 +71,138 @@
       </div><!-- /.navbar-collapse -->
     </div><!-- /.container-fluid -->
   </nav> 
-   
-  <!-- Contain all -->
-  <div class='container-fluid'>
-    <!-- A row for new posts -->
-    <div class='row'style='margin-bottom: 20px;'>
-      <div class="form-group col-lg-8 col-md-8" id='add-post'>
+  
+  <div class='container'>
+     <!-- Add new post icon -->
+    <div class='row'>
+      <div class='col-lg-1'>
+        <ul class="nav nav-pills"> 
+          <li role="presentation" class="active">
+            <span class='glyphicon glyphicon-edit gi-3x add-post'></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <!-- Write new post area -->
+    <div class = 'row'>
+      <div class="form-group write-post col-lg-12">
         <form action='post.php' method='post'>
-          <label style='color:white'>New post:</label>
-          <textarea class='form-control shadow elastic-box' style='resize: none' 
-          rows='2' name='description' id='insert-post' 
+          <textarea class='form-control elastic-box text-post' style='resize: none' 
+          rows='2' name='description'  
           placeholder='Insert some text...'></textarea>
           
           <input style='float:right;margin-top:5px;' type='submit' value='Share'
-          class='btn btn-defaul submit' id='submit'>
+          class='btn btn-defaul submit'>
         </form>
-      </div>  
-    </div>
-    
-    <!-- Container of Posts -->
-    <div class='row'>
-      <div class='col-lg-8 col-md-8'> 
-        <?php
-          #LOAD ALL POSTS
-          $result = $data->getPosts();
-          
-          #A FUNCTION FOR PRINTING A COMMENT
-          function printCommentCode($name, $surname, $comment, $comment_date) { 
-            echo "
-              <div class='row shadow comment-box'>
-                <div class='row'>
-                  
-                  <div class='col-lg-1 col-md-1'>
-                    <img src='img/user.jpg' class='img-rounded comment-img'>
-                  </div>
-                    
-                  <div class='col-lg-7 col-md-7 nopadding'>
-                    <h4 class='nopadding username'>" 
-                      . $surname . " " . $name . 
-                    "</h4>
-                  </div>
-                    
-                  <div class='col-lg-4 col-md-4'>
-                    <p class='date' style='font-size: 9px; 
-                    margin: 2px; float: right'>" 
-                      . $comment_date . 
-                    "</p>
-                  </div>
-                </div>
-                    
-                <div class='row'>
-                  <div class='col-lg-12 col-md-12'>
-                    <h5 class='comment'>" . $comment . "</h5>
-                  </div>
-                </div>
-              </div>
-            ";
-          } 
-          
-          #PRINT EACH LOADED POST WITH ITS COMMENTS
-          while($post = $result->fetch_assoc()) {
-            #LOAD COMMENTS OF THE CURRENT POST
-            $comments = $data->getComments($post['post_id']);  
-            echo "
-              <div class='row' style='margin-left:10%; margin-bottom: 5%;'>
-                
-                <div class='row'>
-                  <div class='col-lg-12 col-md-12'>
-                    <img src='img/user.jpg' class='img-rounded user-img'>
-                    <p class='user' style='display: inline-block'> 
-                      " . $post['surname'] . " " . $post['name'] . "
-                    </p>
-                    <p class='timestamp'><b>" .$post['sharing_date']. "</b></p>
-                    <div class='description shadow '> 
-                      <p>". $post['description'] . "</p>
-                    </div>
-                  </div>
-                </div>
-            ";
-            
-            #CHECK IF THERE ARE COMMENTS AND PRINT THEM
-            if ($comments->num_rows !== 0) {
-              echo "
-                <div class = 'jumbotron row' id='" . $post['post_id'] . "'
-                style='padding: 0 7% 3% 7%; margin: 2px 0px'> 
-                
-                  <div class='row'>
-                    <div class='col-12-lg col-12-md nopadding'>
-                      <p class='nopadding'> <b> Comments: </b></p>
-                    </div>
-                  </div>
-              ";
-              #PRINT COMMENTS OF THE POST
-              while($comment = $comments->fetch_assoc()) {
-                printCommentCode(
-                  $_SESSION['name'], 
-                  $_SESSION['surname'], 
-                  $comment['description'], 
-                  $comment['sharing_date']
-                );
-              }
-              #CLOSE JUMBOTRON
-              echo "</div>";
-            }
-            
-            #CREATE AN ADD-COMMENT PANEL
-            echo "
-              <div class='row'>
-                <div class='col-lg-2 col-md-2 nopadding' 
-                style='float: right !important'>
-                  <img src='img/user.jpg' class='img-rounded user-img' 
-                  style='display: inline'>
-                </div>
-              
-                <div class='col-lg-10 col-md-10'>
-                  <form class='comment-form' action='' method='post' >
-                    <textarea name='comment' rows='1' maxlength='255'
-                    class='
-                      form-control 
-                      elastic-box 
-                      insert-comment" . $post['post_id'] . "
-                    ' 
-                    placeholder='Insert a comment (max 255) ...'></textarea>
-
-                    <input type='text' name='post' class='hidden'
-                    value=" . $post['post_id'] . " />
-
-                    <button type='button' class='btn btn-defaul btn-xs' 
-                    style='margin-top:2px;' data-id='" . $post['post_id'] . "'>
-                      Comment
-                    </button>
-                  </form>
-                </div>
-              </div>
-            
-            </div>         
-            ";
-          }
-        ?>
       </div>
+    </div> 
+
+    <!-- Container of Posts -->
+    <div class='posts-container'>
+      <?php
+        #LOAD ALL POSTS
+        $result = $data->getPosts();
+          
+        #A FUNCTION FOR PRINTING A COMMENT
+        function printCommentCode($name, $surname, $comment, $comment_date) { 
+          echo "
+            <div class='panel-body'>
+              <a href='#'>
+                <h5 class='username'><b>" . $surname . " " . $name . "</b></h5>
+              </a>
+              <h6 class='date'>" . $comment_date . "</h6>
+              <h5 class='comment'>" . $comment . "</h5>
+            </div>
+          "; 
+        } 
+          
+        #PRINT EACH LOADED POST WITH ITS COMMENTS
+        while($post = $result->fetch_assoc()) {
+          
+          echo "
+            <div class='row'>
+              <div class='col-lg-1'>   
+                <img src='img/user.jpg' class='img-rounded user-img'>
+              </div>
+              <div class='col-lg-11'>
+                <div class='row'>
+                  <div class='panel panel-info'>
+                    <div class='panel-heading'>
+                      <h3 class='panel-title'>
+                        <b>" . $post['surname'] . " " . $post['name'] . "</b>
+                      </h3>
+                    </div>
+                    <div class='panel-body'>
+                      <h3> ". $post['description'] . " </h3>
+                    </div>
+                    <div class='panel-footer'>
+                      <span class='glyphicon glyphicon-heart-empty 
+                      like'></span>
+                      <span class='glyphicon glyphicon-comment comm' 
+                      data-id='" . $post['post_id'] ."'></span>
+                      <span class='glyphicon glyphicon-plus pull-right 
+                      reblog'></span>
+                    </div>
+          ";
+
+          #LOAD COMMENTS OF THE CURRENT POST
+          $comments = $data->getComments($post['post_id']);         
+          
+          #CHECK IF THERE ARE COMMENTS AND PRINT THEM
+          if ($comments->num_rows !== 0) {  
+            echo "
+              <div id='all-comments" . $post['post_id'] . "' style='display: none'>
+            ";
+
+            #PRINT COMMENTS OF THE POST
+            while($comment = $comments->fetch_assoc()) {
+              printCommentCode(
+                $_SESSION['name'], 
+                $_SESSION['surname'], 
+                $comment['description'], 
+                $comment['sharing_date']
+              );
+            }
+
+            echo "</div>";
+          }
+          
+          echo " 
+            <div id='write-comment" . $post['post_id'] . "' style='display: none'>
+              <div class='panel-body'>
+                <form class='comment-form' action='' method='post' >
+                  <textarea class='
+                    form-control 
+                    elastic-box 
+                    insert-comment" . $post['post_id'] . "
+                  ' 
+                  style='resize: none' rows='2' name='comment'  
+                  placeholder='Insert a comment...'></textarea>
+                  
+                  <input type='text' name='post' class='hidden'
+                  value=" . $post['post_id'] . " />
+
+                  <button type='button' class='btn btn-defaul btn-xs' 
+                  style='margin-top:2px;' data-id='" . $post['post_id'] . "'>
+                    Comment
+                  </button>
+                </form>
+              </div>
+            </div>
+          ";
+
+          echo "
+              </div>
+            </div>
+          ";
+          
+          echo "     
+              </div>
+            </div>
+          ";
+        }
+      ?>
     </div>
   </div>
   

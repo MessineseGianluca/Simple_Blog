@@ -1,23 +1,35 @@
 $('.elastic-box').elastic();
 
-$('#add').click(function() {
-
-  $('#add-post').css('display', 'block');
-});
-
-$('#insert-post').keyup(function() {
-  if($('#insert-post').val() !== '')
-    $('#submit').css('display', 'block');
-  else 
-    $('#submit').css('display', 'none');
-});
-
-
 //When the page is fully loaded
 $( document ).ready(function() {
   //When the comment button is click
   $('.comment-form button').click( function() {
     post($(this).attr("data-id"));
+  });
+
+  $('.add-post').click(function() {
+    $('.write-post').css('display', 'block');
+  });
+
+  $('.text-post').keyup(function() {
+    if($('.text-post').val() !== '')
+      $('.submit').css('display', 'block');
+    else 
+      $('.submit').css('display', 'none');
+  });
+
+  $('.comm').click(function() {
+    postId = $(this).attr("data-id");
+    status = $('#all-comments' + postId).css('display');
+    alert(status);
+    if(status === "none" ) {
+      $('#all-comments' + postId).css('display', 'block');
+      $('#write-comment' + postId).css('display', 'block');
+    }
+    else {
+      $('#all-comments' + postId).css('display', 'none');
+      $('#write-comment' + postId).css('display', 'none');
+    }
   });
 
 });
@@ -45,11 +57,7 @@ function post(postId) {
   //codesample of a comment
   var commentCode = $(".codesample").html();
 
-  /*$(commentCode).find(".username").text(name);
-  $(commentCode).find(".date").text(Date());
-  $(commentCode).find(".comment").text(comment);
-  */
-  comment_post = $("#" + postId).html() + commentCode;
+  comment_post = $("#all-comments" + postId).html() + commentCode;
   
   if(comment)
   {
@@ -66,7 +74,7 @@ function post(postId) {
       },
       success: function() {
         
-        $("#" + postId).html( comment_post );
+        $("#all-comments" + postId).html( comment_post );
         $(".insert-comment" + postId).val("");
       }
     });
