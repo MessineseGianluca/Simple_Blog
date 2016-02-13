@@ -20,9 +20,7 @@ $( document ).ready(function() {
 
   $('.comm').click(function() {
     postId = $(this).attr("data-id");
-    alert(postId);
     status = $('#write-comment' + postId).css('display');
-    alert(status);
     if(status === "none" ) {
       $('#all-comments' + postId).css('display', 'block');
       $('#write-comment' + postId).css('display', 'block');
