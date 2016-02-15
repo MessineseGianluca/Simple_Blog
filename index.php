@@ -35,7 +35,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="#">BeSocial</a>
+        <a class="navbar-brand" href="index.php">BeSocial</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
@@ -88,12 +88,12 @@
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
         <form action='post.php' method='post'>
-          <textarea class='form-control elastic-box text-post' style='resize: none' 
-          rows='2' name='description'  
+          <textarea class='form-control elastic-box text-post' 
+          rows='2' name='description' style='resize: none' 
           placeholder='Insert some text...'></textarea>
           
-          <input style='float:right;margin-top:5px;' type='submit' value='Share'
-          class='btn btn-defaul submit'>
+          <input style='float: right;' 
+          class='btn btn-defaul submit' type='submit' value='Share'>
         </form>
       </div>
     </div> 
@@ -108,7 +108,7 @@
         function printCommentCode($name, $surname, $comment, $comment_date) { 
           echo "
             <div class='panel-body'>
-              <a href='#'>
+              <a href=''>
                 <h5 class='username'><b>" . $surname . " " . $name . "</b></h5>
               </a>
               <h6 class='date'>" . $comment_date . "</h6>
@@ -158,8 +158,8 @@
             #PRINT COMMENTS OF THE POST
             while($comment = $comments->fetch_assoc()) {
               printCommentCode(
-                $_SESSION['name'], 
-                $_SESSION['surname'], 
+                $comment['name'], 
+                $comment['surname'], 
                 $comment['description'], 
                 $comment['sharing_date']
               );

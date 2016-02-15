@@ -123,7 +123,7 @@
         );
         return $comments;
       }
-    
+  
       public function addComment() {
         $id = $_SESSION['id'];
         $comment = $_POST['comment'];
@@ -148,7 +148,6 @@
       }
   
   }
-  
   
   
   function cryptPass($pass, $rounds = 10) {

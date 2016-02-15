@@ -38,7 +38,6 @@
   color: blue;
 }
 
-.nopadding {
-  padding: 0 !important;
-  margin: 0 !important;
+.add-post {
+  margin-bottom: 10px;
 }

@@ -8,7 +8,10 @@ $( document ).ready(function() {
   });
 
   $('.add-post').click(function() {
-    $('.write-post').css('display', 'block');
+    if($('.write-post').css('display') === 'none' )
+      $('.write-post').css('display', 'block');
+    else 
+      $('.write-post').css('display', 'none');
   });
 
   $('.text-post').keyup(function() {
