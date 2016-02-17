@@ -46,7 +46,7 @@
         ) or die($this->connection->error);
       }
       
-      #Return true if the email  already exists, else return false 
+      #Return true if the email  already exits, else return false 
       public function isRegistred($email) {
         $result = $this->connection->query(
             "SELECT email

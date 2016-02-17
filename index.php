@@ -149,11 +149,12 @@
           #LOAD COMMENTS OF THE CURRENT POST
           $comments = $data->getComments($post['post_id']);         
           
+          echo "
+            <div id='all-comments" . $post['post_id'] . "' style='display: none'>
+          ";
+
           #CHECK IF THERE ARE COMMENTS AND PRINT THEM
-          if ($comments->num_rows !== 0) {  
-            echo "
-              <div id='all-comments" . $post['post_id'] . "' style='display: none'>
-            ";
+          if ($comments->num_rows !== 0) { 
 
             #PRINT COMMENTS OF THE POST
             while($comment = $comments->fetch_assoc()) {
@@ -164,9 +165,8 @@
                 $comment['sharing_date']
               );
             }
-
-            echo "</div>";
           }
+          echo "</div>"; #close <div class='all-comments'...>
           
           echo " 
             <div id='write-comment" . $post['post_id'] . "' style='display: none'>
