@@ -12,6 +12,8 @@
   
   $data->connectMysql();
 ?>
+
+
 <!DOCTYPE html>
 <html lang='en'>
 <head>
@@ -103,9 +105,9 @@
         #A FUNCTION FOR PRINTING A COMMENT
         function printCommentCode($name, $surname, $comment, $comment_date) { 
           echo "
-            <div class='panel-body'>
+            <div class='panel-body comment-box'>
               <a href=''>
-                <h5 class='username'><b>" . $surname . " " . $name . "</b></h5>
+                <h5 class='username'>" . $surname . " " . $name . "</h5>
               </a>
               <h6 class='date'>" . $comment_date . "</h6>
               <h5 class='comment'>" . $comment . "</h5>
