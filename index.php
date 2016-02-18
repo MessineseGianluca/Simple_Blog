@@ -31,17 +31,24 @@
     <div class="container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-       <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        </button>
+        <button type="button" 
+               class="navbar-toggle collapsed" 
+               data-toggle="collapse" 
+               data-target="#bs-example-navbar-collapse-1" 
+               aria-expanded="false"
+        >
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          </button>
         <a class="navbar-brand" href="index.php">BeSocial</a>
       </div>
 
       <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <div class="collapse navbar-collapse" 
+           id="bs-example-navbar-collapse-1"
+      >
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
@@ -50,7 +57,13 @@
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            <a href="#" 
+               class="dropdown-toggle" 
+               data-toggle="dropdown" 
+               role="button" 
+               aria-haspopup="true" 
+               aria-expanded="false"
+            >
               <span class='glyphicon glyphicon-user img-rounded'></span>
               &nbsp;
               <?php 
@@ -71,27 +84,20 @@
   </nav> 
   
   <div class='container'>
-     <!-- Add new post icon -->
-    <div class='row'>
-      <div class='col-lg-1'>
-        <ul class="nav nav-pills"> 
-          <li role="presentation" class="active">
-            <span class='glyphicon glyphicon-edit gi-3x add-post'></span>
-          </li>
-        </ul>
-      </div>
-    </div>
-    
     <!-- Write new post area -->
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
         <form action='post.php' method='post'>
-          <textarea class='form-control elastic-box text-post' 
-          rows='2' name='description' style='resize: none' 
-          placeholder='Insert some text...'></textarea>
+          <textarea class='form-control elastic-box text-post'
+                    style='resize: none;' 
+                    rows='2' 
+                    name='description'
+                    placeholder='Insert some text...'></textarea>
           
           <input style='float: right;' 
-          class='btn btn-defaul submit' type='submit' value='Share'>
+                 class='btn btn-defaul submit' 
+                 type='submit' 
+                 value='Share'>
         </form>
       </div>
     </div> 
@@ -106,7 +112,7 @@
         function printCommentCode($name, $surname, $comment, $comment_date) { 
           echo "
             <div class='panel-body comment-box'>
-              <a href=''>
+              <a href='#'>
                 <h5 class='username'>" . $surname . " " . $name . "</h5>
               </a>
               <h6 class='date'>" . $comment_date . "</h6>
@@ -138,9 +144,11 @@
                       <span class='glyphicon glyphicon-heart-empty 
                       like'></span>
                       <span class='glyphicon glyphicon-comment comm' 
-                      data-id='" . $post['post_id'] ."'></span>
+                            data-id='" . $post['post_id'] ."'>
+                      </span>
                       <span class='glyphicon glyphicon-plus pull-right 
-                      reblog'></span>
+                                   reblog'>
+                      </span>
                     </div>
           ";
 
@@ -148,7 +156,9 @@
           $comments = $data->getComments($post['post_id']);         
           
           echo "
-            <div id='all-comments" . $post['post_id'] . "' style='display: none'>
+            <div id='all-comments" . $post['post_id'] . "' 
+                 style='display: none'
+            >
           ";
 
           #CHECK IF THERE ARE COMMENTS AND PRINT THEM
@@ -167,9 +177,11 @@
           echo "</div>"; #close <div class='all-comments'...>
           
           echo " 
-            <div id='write-comment" . $post['post_id'] . "' style='display: none'>
+            <div id='write-comment" . $post['post_id'] . "' 
+                 style='display: none'
+            >
               <div class='panel-body'>
-                <form class='comment-form' action='' method='post' >
+                <form class='comment-form' action='' method='post'>
                   <textarea class='
                     form-control 
                     elastic-box 
@@ -181,10 +193,11 @@
                   <input type='text' name='post' class='hidden'
                   value=" . $post['post_id'] . " />
 
-                  <button type='button' class='btn btn-defaul btn-xs' 
-                  style='margin-top:2px;' data-id='" . $post['post_id'] . "'>
-                    Comment
-                  </button>
+                  <button type='button' 
+                          class='btn btn-defaul btn-xs' 
+                          style='margin-top:2px;' 
+                          data-id='" . $post['post_id'] . "'
+                  >Comment</button>
                 </form>
               </div>
             </div>

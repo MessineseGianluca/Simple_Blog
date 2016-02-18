@@ -7,13 +7,6 @@ $( document ).ready(function() {
     post($(this).attr("data-id"));
   });
 
-  $('.add-post').click(function() {
-    if($('.write-post').css('display') === 'none' )
-      $('.write-post').css('display', 'block');
-    else 
-      $('.write-post').css('display', 'none');
-  });
-
   $('.text-post').keyup(function() {
     if($('.text-post').val() !== '')
       $('.submit').css('display', 'block');
