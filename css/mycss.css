@@ -1,5 +1,6 @@
-.container {  
-  width: 50%;
+.container{  
+  float: none;
+  margin: 0 auto;
   margin-top: 60px;
 }
 
@@ -29,6 +30,12 @@
   display: none;  
 }
 
+.like, .comm, .reblog {
+  background-color: transparent;
+  border: none;
+  outline:none;
+}
+
 .like {
   color: red;
 }
@@ -45,4 +52,8 @@
   margin-top: 10px;
   padding-left: 0px; 
   padding-right: 0px;
+}
+
+.post-box {
+  margin-bottom: 10px;
 }

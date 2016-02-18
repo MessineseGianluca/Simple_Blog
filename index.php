@@ -83,7 +83,7 @@
     </div><!-- /.container-fluid -->
   </nav> 
   
-  <div class='container'>
+  <div class='container col-lg-6'>
     <!-- Write new post area -->
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
@@ -125,11 +125,11 @@
         while($post = $result->fetch_assoc()) {
           
           echo "
-            <div class='row'>
-              <div class='col-lg-1'>   
+            <div class='post-box row'>
+              <div class='col-lg-1 col-xs-1' style='padding: 0'>   
                 <img src='img/user.jpg' class='img-rounded user-img'>
               </div>
-              <div class='col-lg-11'>
+              <div class='col-lg-11 col-xs-11'>
                 <div class='row'>
                   <div class='panel panel-info'>
                     <div class='panel-heading'>
@@ -141,14 +141,17 @@
                       <h3> ". $post['description'] . " </h3>
                     </div>
                     <div class='panel-footer'>
-                      <span class='glyphicon glyphicon-heart-empty 
-                      like'></span>
-                      <span class='glyphicon glyphicon-comment comm' 
-                            data-id='" . $post['post_id'] ."'>
-                      </span>
-                      <span class='glyphicon glyphicon-plus pull-right 
-                                   reblog'>
-                      </span>
+                      <button class='like'>
+                        <span class='glyphicon glyphicon-heart-empty'></span>
+                      </button>
+                      <button class='comm' data-id='" . $post['post_id'] ."'>
+                        <span class='glyphicon glyphicon-comment'>
+                        </span>
+                      </button>
+                      <button class='reblog pull-right'>
+                        <span class='glyphicon glyphicon-plus'>
+                        </span>
+                      </button>
                     </div>
           ";
 
