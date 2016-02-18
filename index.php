@@ -47,19 +47,15 @@
           <button type="submit" class="btn btn-default">Submit</button>
         </form>
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            
-            <p class="navbar-text pull-right">
-              <a href="#" class="navbar-link">
-                <?php 
-                  echo $_SESSION['surname'] . " " . $_SESSION['name'] ; 
-                ?>
-              </a> 
-            </p>
-            <span class='glyphicon glyphicon-user img-rounded navbar-brand pull-right'></span>
-          </li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="caret"></span></a>
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <span class='glyphicon glyphicon-user img-rounded'></span>
+              &nbsp;
+              <?php 
+                echo $_SESSION['surname'] . " " . $_SESSION['name'] ; 
+              ?>
+              <span class="caret"></span>
+            </a> 
             <ul class="dropdown-menu">
               <li><a href="#">Profile</a></li>
               <li><a href="#">Account</a></li>
