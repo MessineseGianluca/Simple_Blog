@@ -3,14 +3,6 @@ $('.elastic-box').elastic();
 //When the page is fully loaded
 $( document ).ready(function() {
   //When the comment button is click
-  $('.comment-form button').click( function() {
-    postComment($(this).attr("data-id"));
-  });
-
-  $('.post-submit').click(function() {
-    postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
-  })
-
   $('.text-post').keyup(function() {
     if($('.text-post').val() !== '')
       $('.post-submit').css('display', 'block');
@@ -18,7 +10,21 @@ $( document ).ready(function() {
       $('.post-submit').css('display', 'none');
   });
 
-  $('.comm').click(function() {
+  prepare();
+
+});
+
+
+function prepare() {
+  $('.comment-form button').off("click").click( function() {
+    postComment($(this).attr("data-id"));
+  });
+
+  $('.post-submit').off("click").click(function() {
+    postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
+  });
+
+  $('.comm').off("click").click(function() {
     postId = $(this).attr("data-id");
     status = $('#write-comment' + postId).css('display');
     alert("memt")
@@ -32,7 +38,7 @@ $( document ).ready(function() {
     }
   });
 
-});
+}
 
 
 function postNewPost(postId) {
@@ -50,8 +56,6 @@ function postNewPost(postId) {
   $('.postCodeSample .comment-button').attr("data-id", postId);
 
   var postCode = $(".postCodeSample").html();
-  
-  var posts = postCode + $(".posts-container").html();
 
   if(description)
   {
@@ -64,9 +68,10 @@ function postNewPost(postId) {
       },
       success: function() {
         
-        $(".posts-container").html( posts );
+        $(".posts-container").prepend(postCode);
         $(".text-post").val("");
         $(".post-submit").attr("dataNextPostId", postId);
+        prepare();
       }
     });
   }
