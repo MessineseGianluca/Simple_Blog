@@ -26,12 +26,12 @@
             <div class='panel panel-info'>
 
               <div class='panel-heading'>
-                <h3 class='panel-title'>
+                <h3 class='panel-title author'>
                   <b>" . $surname . " " . $name . "</b>
                 </h3>
               </div>
 
-              <div class='panel-body'>
+              <div class='panel-body text'>
                 <h3> ". $description . " </h3>
               </div>
 
@@ -91,12 +91,9 @@
                           ' 
                     style='resize: none' rows='2' name='comment'  
                     placeholder='Insert a comment...'></textarea>
-                  
-          <input type='text' name='post' class='hidden'
-                 value=" . $post_id . " />
 
           <button type='button' 
-                  class='btn btn-defaul btn-xs' 
+                  class='btn btn-defaul btn-xs comment-button' 
                   style='margin-top:2px;' 
                   data-id='" . $post_id . "'
           >Comment</button>

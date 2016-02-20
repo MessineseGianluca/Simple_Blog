@@ -8,5 +8,5 @@
   $data->addPost($_POST['description']);
   
   $data->disconnectMysql();
-  header("location: index.php");
-
+ 
+  http_response_code(201);

@@ -9,6 +9,9 @@
     exit;
   } 
 
+
+  $data = new MysqlConnector();
+  $data->connectMysql();
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +21,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" 
-  href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+        href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/mycss.css">  
 </head>
 <body>
@@ -29,10 +32,10 @@
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
         <button type="button" 
-               class="navbar-toggle collapsed" 
-               data-toggle="collapse" 
-               data-target="#bs-example-navbar-collapse-1" 
-               aria-expanded="false">
+                class="navbar-toggle collapsed" 
+                data-toggle="collapse" 
+                data-target="#bs-example-navbar-collapse-1" 
+                aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -43,8 +46,7 @@
 
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" 
-           id="bs-example-navbar-collapse-1"
-      >
+           id="bs-example-navbar-collapse-1">
         <form class="navbar-form navbar-left" role="search">
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
@@ -82,7 +84,8 @@
     <!-- Write new post area -->
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
-        <form action='post.php' method='post'>
+
+        <form action='' method='post'>
           <textarea class='form-control elastic-box text-post'
                     style='resize: none;'
                     rows='2'
@@ -91,8 +94,12 @@
           
           <input style='float: right;' 
                  class='btn btn-defaul post-submit' 
-                 type='submit' 
-                 value='Share'>
+                 type='button'
+                 value='Share'
+                 dataNextPostId=
+                   <?php echo $data->findLastPostId(); ?>
+          >
+
         </form>
       </div>
     </div> 
@@ -120,8 +127,12 @@
     </div>
   </div>
   
+  <div class='hidden postCodeSample'>
+    <?php printPostCode("", "", "", "")?>
+  </div>
+
   <!-- A div for storing a codesample of a general comment --> 
-  <div class='hidden codesample '>
+  <div class='hidden commentCodeSample'>
     <?php printCommentCode("", "", "", ""); ?>
   </div>
   

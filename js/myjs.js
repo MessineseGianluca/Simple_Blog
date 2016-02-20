@@ -8,7 +8,7 @@ $( document ).ready(function() {
   });
 
   $('.post-submit').click(function() {
-    postPost();
+    postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
   })
 
   $('.text-post').keyup(function() {
@@ -34,7 +34,42 @@ $( document ).ready(function() {
 });
 
 
+function postNewPost(postId) {
 
+  var description = $('.text-post').val();
+  var name = lastname + " " + firstname;
+
+  $('.postCodeSample .post-box').toggleClass("post-box post-box"+postId);
+  $('.postCodeSample .author').html("<b>" + name + "</b>");
+  $('.postCodeSample .text').html("<h3> " + description + "</h3>");
+  $('.postCodeSample .comm').attr("data-id", postId);
+  $('.postCodeSample #all-comments').attr("id", "all-comments" + postId);
+  $('.postCodeSample #write-comment').attr("id", "write-comment" + postId);
+  $('.postCodeSample .insert-comment').toggleClass("insert-comment insert-comment" + postId);
+  $('.postCodeSample .comment-button').attr("data-id", postId);
+
+  var postCode = $(".postCodeSample").html();
+  
+  var posts = postCode + $(".posts-container").html();
+
+  if(description)
+  {
+    $.ajax
+    ({
+      type: 'post',
+      url: 'post.php',
+      data: {
+        description: description,
+      },
+      success: function() {
+        
+        $(".posts-container").html( posts );
+        $(".text-post").val("");
+      }
+    });
+  }
+
+}
 
 function postComment(postId) {
 
@@ -52,13 +87,14 @@ function postComment(postId) {
   //name of the commentator
   var name = lastname + " " + firstname;
   
-   $(".codesample .username").text(name);
-   $(".codesample .date").text(date);
-   $(".codesample .comment").text(comment);
-  //codesample of a comment
-  var commentCode = $(".codesample").html();
+  $(".commentCodeSample .username").text(name);
+  $(".commentCodeSample .date").text(date);
+  $(".commentCodeSample .comment").text(comment);
 
-  comment_post = $("#all-comments" + postId).html() + commentCode;
+  //codesample of a comment
+  var commentCode = $(".commentCodeSample").html();
+
+  var comments = $("#all-comments" + postId).html() + commentCode;
   
   if(comment)
   {
@@ -75,11 +111,9 @@ function postComment(postId) {
       },
       success: function() {
         
-        $("#all-comments" + postId).html( comment_post );
+        $("#all-comments" + postId).html( comments );
         $(".insert-comment" + postId).val("");
       }
     });
   }
-
-  return false;
 }
