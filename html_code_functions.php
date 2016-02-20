@@ -2,6 +2,7 @@
   
   #A FUNCTION FOR PRINTING A COMMENT
   function printCommentCode($name, $surname, $comment, $comment_date) { 
+    
     echo "
       <div class='panel-body comment-box'>
         <a href='#'>

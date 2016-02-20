@@ -39,6 +39,7 @@
     
       #Insert new account
       public function signUp($email, $pass, $name, $surname) {
+
         $this->connection->query(
           "INSERT INTO Users(email, password, name, surname)
            VALUES('$email', '$pass', '$name', '$surname');      
@@ -48,6 +49,7 @@
       
       #Return true if the email  already exits, else return false 
       public function isRegistred($email) {
+
         $result = $this->connection->query(
             "SELECT email
              FROM Users 
@@ -84,9 +86,17 @@
         return false;
       }
       
-      
+      public function findLastPostId() {
+        
+        $last = $this->connection->query(
+          "SELECT MAX(post_id) FROM Posts;"
+        ) or die ($this->connection->error);
+        $lastone = $last->fetch_assoc();
+        return $lastone['MAX(post_id)'];
+      }
 
       public function addPost($content) {
+
         $id = $_SESSION['id'];  
         $this->connection->query(
             "INSERT INTO Posts(description, user_id)
@@ -97,6 +107,7 @@
       
 
       public function getPosts() {
+
         $posts = $this->connection->query(
             "SELECT Posts.description, Posts.sharing_date, Posts.post_id,
                     Users.name, Users.surname
@@ -111,6 +122,7 @@
       }
 
       public function getComments($post) {
+
         $comments = $this->connection->query(
             "SELECT Comments.description, Comments.sharing_date, 
                     Comments.user_id, Users.name, Users.surname, Users.user_id
@@ -125,6 +137,7 @@
       }
   
       public function addComment() {
+
         $id = $_SESSION['id'];
         $comment = $_POST['comment'];
         $post = $_POST['post'];
@@ -143,13 +156,13 @@
                         
         $this->connection->close() or die(mysql_error());
         $this->status = "Disconnected from the server. <br>";
-        //echo $this->status;
-      
       }
   
   }
   
   
+
+
   function cryptPass($pass, $rounds = 10) {
   
     $salt = '';
@@ -165,3 +178,4 @@
   
     return crypt($pass, sprintf('$2y$%02d$', $rounds) . $salt);
   }
+  

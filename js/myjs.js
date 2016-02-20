@@ -4,14 +4,18 @@ $('.elastic-box').elastic();
 $( document ).ready(function() {
   //When the comment button is click
   $('.comment-form button').click( function() {
-    post($(this).attr("data-id"));
+    postComment($(this).attr("data-id"));
   });
+
+  $('.post-submit').click(function() {
+    postPost();
+  })
 
   $('.text-post').keyup(function() {
     if($('.text-post').val() !== '')
-      $('.submit').css('display', 'block');
+      $('.post-submit').css('display', 'block');
     else 
-      $('.submit').css('display', 'none');
+      $('.post-submit').css('display', 'none');
   });
 
   $('.comm').click(function() {
@@ -30,7 +34,9 @@ $( document ).ready(function() {
 });
 
 
-function post(postId) {
+
+
+function postComment(postId) {
 
   //Date in SQL format 
   var date = new Date();

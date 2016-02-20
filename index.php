@@ -32,8 +32,7 @@
                class="navbar-toggle collapsed" 
                data-toggle="collapse" 
                data-target="#bs-example-navbar-collapse-1" 
-               aria-expanded="false"
-        >
+               aria-expanded="false">
           <span class="sr-only">Toggle navigation</span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -85,13 +84,13 @@
       <div class="form-group write-post col-lg-12">
         <form action='post.php' method='post'>
           <textarea class='form-control elastic-box text-post'
-                    style='resize: none;' 
-                    rows='2' 
+                    style='resize: none;'
+                    rows='2'
                     name='description'
                     placeholder='Insert some text...'></textarea>
           
           <input style='float: right;' 
-                 class='btn btn-defaul submit' 
+                 class='btn btn-defaul post-submit' 
                  type='submit' 
                  value='Share'>
         </form>
