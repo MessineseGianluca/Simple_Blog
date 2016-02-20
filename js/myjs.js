@@ -21,6 +21,7 @@ $( document ).ready(function() {
   $('.comm').click(function() {
     postId = $(this).attr("data-id");
     status = $('#write-comment' + postId).css('display');
+    alert("memt")
     if(status === "none" ) {
       $('#all-comments' + postId).css('display', 'block');
       $('#write-comment' + postId).css('display', 'block');
@@ -39,7 +40,7 @@ function postNewPost(postId) {
   var description = $('.text-post').val();
   var name = lastname + " " + firstname;
 
-  $('.postCodeSample .post-box').toggleClass("post-box post-box"+postId);
+  $('.postCodeSample .post-box').toggleClass("post-box post-box" + postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
   $('.postCodeSample .text').html("<h3> " + description + "</h3>");
   $('.postCodeSample .comm').attr("data-id", postId);
@@ -65,6 +66,7 @@ function postNewPost(postId) {
         
         $(".posts-container").html( posts );
         $(".text-post").val("");
+        $(".post-submit").attr("dataNextPostId", postId);
       }
     });
   }
