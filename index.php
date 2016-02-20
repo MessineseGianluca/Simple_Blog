@@ -1,6 +1,7 @@
 <?php
   session_start();
   include 'php_functions.php';
+  include 'html_code_functions.php';
   #Create an object for the dbms handlings
   if(!$_SESSION['authenticated'])
   {
@@ -8,11 +9,7 @@
     exit;
   } 
 
-  $data = new MysqlConnector();
-  
-  $data->connectMysql();
 ?>
-
 
 <!DOCTYPE html>
 <html lang='en'>
@@ -62,8 +59,7 @@
                data-toggle="dropdown" 
                role="button" 
                aria-haspopup="true" 
-               aria-expanded="false"
-            >
+               aria-expanded="false">
               <span class='glyphicon glyphicon-user img-rounded'></span>
               &nbsp;
               <?php 
@@ -105,116 +101,21 @@
     <!-- Container of Posts -->
     <div class='posts-container'>
       <?php
+
+        $data = new MysqlConnector();
+        $data->connectMysql();
+        
         #LOAD ALL POSTS
         $result = $data->getPosts();
           
-        #A FUNCTION FOR PRINTING A COMMENT
-        function printCommentCode($name, $surname, $comment, $comment_date) { 
-          echo "
-            <div class='panel-body comment-box'>
-              <a href='#'>
-                <h5 class='username'>" . $surname . " " . $name . "</h5>
-              </a>
-              <h6 class='date'>" . $comment_date . "</h6>
-              <h5 class='comment'>" . $comment . "</h5>
-            </div>
-          "; 
-        } 
-          
         #PRINT EACH LOADED POST WITH ITS COMMENTS
-        while($post = $result->fetch_assoc()) {
-          
-          echo "
-            <div class='post-box row'>
-              <div class='col-lg-1 col-xs-1' style='padding: 0'>   
-                <img src='img/user.jpg' class='img-rounded user-img'>
-              </div>
-              <div class='col-lg-11 col-xs-11'>
-                <div class='row'>
-                  <div class='panel panel-info'>
-                    <div class='panel-heading'>
-                      <h3 class='panel-title'>
-                        <b>" . $post['surname'] . " " . $post['name'] . "</b>
-                      </h3>
-                    </div>
-                    <div class='panel-body'>
-                      <h3> ". $post['description'] . " </h3>
-                    </div>
-                    <div class='panel-footer'>
-                      <button class='like'>
-                        <span class='glyphicon glyphicon-heart-empty'></span>
-                      </button>
-                      <button class='comm' data-id='" . $post['post_id'] ."'>
-                        <span class='glyphicon glyphicon-comment'>
-                        </span>
-                      </button>
-                      <button class='reblog pull-right'>
-                        <span class='glyphicon glyphicon-plus'>
-                        </span>
-                      </button>
-                    </div>
-          ";
-
-          #LOAD COMMENTS OF THE CURRENT POST
-          $comments = $data->getComments($post['post_id']);         
-          
-          echo "
-            <div id='all-comments" . $post['post_id'] . "' 
-                 style='display: none'
-            >
-          ";
-
-          #CHECK IF THERE ARE COMMENTS AND PRINT THEM
-          if ($comments->num_rows !== 0) { 
-
-            #PRINT COMMENTS OF THE POST
-            while($comment = $comments->fetch_assoc()) {
-              printCommentCode(
-                $comment['name'], 
-                $comment['surname'], 
-                $comment['description'], 
-                $comment['sharing_date']
-              );
-            }
-          }
-          echo "</div>"; #close <div class='all-comments'...>
-          
-          echo " 
-            <div id='write-comment" . $post['post_id'] . "' 
-                 style='display: none'
-            >
-              <div class='panel-body'>
-                <form class='comment-form' action='' method='post'>
-                  <textarea class='
-                    form-control 
-                    elastic-box 
-                    insert-comment" . $post['post_id'] . "
-                  ' 
-                  style='resize: none' rows='2' name='comment'  
-                  placeholder='Insert a comment...'></textarea>
-                  
-                  <input type='text' name='post' class='hidden'
-                  value=" . $post['post_id'] . " />
-
-                  <button type='button' 
-                          class='btn btn-defaul btn-xs' 
-                          style='margin-top:2px;' 
-                          data-id='" . $post['post_id'] . "'
-                  >Comment</button>
-                </form>
-              </div>
-            </div>
-          ";
-
-          echo "
-              </div>
-            </div>
-          ";
-          
-          echo "     
-              </div>
-            </div>
-          ";
+        while($post = $result->fetch_assoc()) {     
+          printPostCode(
+            $post['name'], 
+            $post['surname'],
+            $post['description'],
+            $post['post_id']
+          );
         }
       ?>
     </div>
