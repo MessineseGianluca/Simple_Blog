@@ -84,6 +84,10 @@
     <!-- Write new post area -->
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
+        
+        <button class='add-img pull-right'>
+          <span class='glyphicon glyphicon-picture'></span>
+        </button>
 
         <form action='' method='post'>
           <textarea class='form-control elastic-box text-post'
@@ -96,9 +100,9 @@
                  class='btn btn-defaul post-submit' 
                  type='button'
                  value='Share'
-                 dataNextPostId=
-                   <?php echo $data->findLastPostId(); ?>
-          >
+                 dataNextPostId=<?php echo $data->findLastPostId(); ?>>
+          
+          <input class='hidden choose-img' type='file' name='imgToUpdate'>          
 
         </form>
       </div>

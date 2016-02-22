@@ -9,6 +9,13 @@ $( document ).ready(function() {
     else 
       $('.post-submit').css('display', 'none');
   });
+  
+  $('.add-img').click(function() {
+    if($('.choose-img').css("display") === "none")
+      $('.choose-img').removeClass("hidden");
+    else 
+      $('.choose-img').addClass("hidden");
+  })
 
   prepare();
 
@@ -66,7 +73,6 @@ function postNewPost(postId) {
         description: description,
       },
       success: function() {
-        
         $(".posts-container").prepend(postCode);
         $(".text-post").val("");
         $(".post-submit").attr("dataNextPostId", postId);
