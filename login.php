@@ -4,7 +4,8 @@
   <title> Sign in </title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" 
+        href="bower_components/bootstrap/dist/css/bootstrap.min.css">
 </head>
 <body>
   <?php
@@ -18,10 +19,9 @@
     <br><br>
     <input type='submit' value='Enter'> or 
     <input type='button' value='Sign up'  
-    onclick = 'window.open("signup.php", "_self")'>
+           onclick = 'window.open("signup.php", "_self")'>
   </form>
   
-
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 </body>

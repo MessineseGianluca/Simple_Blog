@@ -91,16 +91,24 @@
         $last = $this->connection->query(
           "SELECT MAX(post_id) FROM Posts;"
         ) or die ($this->connection->error);
+
         $lastone = $last->fetch_assoc();
         return $lastone['MAX(post_id)'];
       }
 
       public function addPost($content) {
-
-        $id = $_SESSION['id'];  
+        
+        $id = $_SESSION['id'];
+        
+        //Add escape char \ in before special characters 
+        $content = $this->connection->real_escape_string( $content );  
+        
         $this->connection->query(
             "INSERT INTO Posts(description, user_id)
-             VALUES ('$content', '$id'); 
+             VALUES (
+               '$content', 
+               '$id'
+             ); 
             "
         ) or die($this->connection->error);
       }
@@ -141,10 +149,16 @@
         $id = $_SESSION['id'];
         $comment = $_POST['comment'];
         $post = $_POST['post'];
-
+        //Add escape char \ in before special characters 
+        $comment = $this->connection->real_escape_string( $comment );
+        
         $this->connection->query(
             "INSERT INTO Comments (description, user_id, post_id)
-             VALUES ('$comment', '$id', '$post');
+             VALUES (
+               '$comment', 
+               '$id', 
+               '$post'
+             );
             "
         ) or die($this->connection->error);
       }

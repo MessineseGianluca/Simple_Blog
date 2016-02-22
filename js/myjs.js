@@ -27,7 +27,6 @@ function prepare() {
   $('.comm').off("click").click(function() {
     postId = $(this).attr("data-id");
     status = $('#write-comment' + postId).css('display');
-    alert("memt")
     if(status === "none" ) {
       $('#all-comments' + postId).css('display', 'block');
       $('#write-comment' + postId).css('display', 'block');
