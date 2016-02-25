@@ -85,9 +85,9 @@
     <div class = 'row'>
       <div class="form-group write-post col-lg-12">
         
-        <button class='add-img pull-right'>
+        <!--<button class='add-img pull-right'>
           <span class='glyphicon glyphicon-picture'></span>
-        </button>
+        </button>-->
 
         <form action='' method='post'>
           <textarea class='form-control elastic-box text-post'
@@ -102,7 +102,7 @@
                  value='Share'
                  dataNextPostId=<?php echo $data->findLastPostId(); ?>>
           
-          <input class='hidden choose-img' type='file' name='imgToUpdate'>          
+          <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
 
         </form>
       </div>

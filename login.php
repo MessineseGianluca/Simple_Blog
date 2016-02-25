@@ -19,7 +19,7 @@
           name='signin' 
           action='validate_user.php' 
           method='post'>
-      <h2 class="form-signin-heading">Please sign in</h2>
+      <h2>Please sign in</h2>
       <input type="email" 
              class="form-control" 
              placeholder="Email address"
@@ -27,7 +27,7 @@
              required 
              autofocus>
       <input type="password" 
-             id="inputPassword" 
+             maxlength="16" 
              class="form-control"
              name="pass" 
              placeholder="Password" 

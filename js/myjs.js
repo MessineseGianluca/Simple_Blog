@@ -10,12 +10,12 @@ $( document ).ready(function() {
       $('.post-submit').css('display', 'none');
   });
   
-  $('.add-img').click(function() {
+  /*$('.add-img').click(function() {
     if($('.choose-img').css("display") === "none")
       $('.choose-img').removeClass("hidden");
     else 
       $('.choose-img').addClass("hidden");
-  })
+  })*/
 
   prepare();
 
