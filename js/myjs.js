@@ -24,23 +24,23 @@ $( document ).ready(function() {
 
 function prepare() {
   $('.comment-form button').off("click").click( function() {
-    postComment($(this).attr("data-id"));
+    postComment($(this).parents('.post-box').attr("id"));
   });
 
   $('.post-submit').off("click").click(function() {
     postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
   });
 
-  $('.comm').off("click").click(function() {
-    postId = $(this).attr("data-id");
-    status = $('#write-comment' + postId).css('display');
+  $('.post-box .comm').off("click").click(function() {
+    postId = $(this).parents(".post-box").attr("id");
+    status = $('#' + postId ).find('.write-comment').css('display');
     if(status === "none" ) {
-      $('#all-comments' + postId).css('display', 'block');
-      $('#write-comment' + postId).css('display', 'block');
+      $('#' + postId).find('.all-comments').css('display', 'block');
+      $('#' + postId).find('.write-comment').css('display', 'block');
     }
     else {
-      $('#all-comments' + postId).css('display', 'none');
-      $('#write-comment' + postId).css('display', 'none');
+      $('#' + postId).find('.all-comments').css('display', 'none');
+      $('#' + postId).find('.write-comment').css('display', 'none');
     }
   });
 
@@ -52,14 +52,9 @@ function postNewPost(postId) {
   var description = $('.text-post').val();
   var name = lastname + " " + firstname;
 
-  $('.postCodeSample .post-box').toggleClass("post-box post-box" + postId);
+  $('.postCodeSample .post-box').attr("id", postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
   $('.postCodeSample .text').html("<h3> " + description + "</h3>");
-  $('.postCodeSample .comm').attr("data-id", postId);
-  $('.postCodeSample #all-comments').attr("id", "all-comments" + postId);
-  $('.postCodeSample #write-comment').attr("id", "write-comment" + postId);
-  $('.postCodeSample .insert-comment').toggleClass("insert-comment insert-comment" + postId);
-  $('.postCodeSample .comment-button').attr("data-id", postId);
 
   var postCode = $(".postCodeSample").html();
 
@@ -95,7 +90,7 @@ function postComment(postId) {
     ('00' + date.getUTCSeconds()).slice(-2);
 
   //comment inserted
-  var comment = $(".insert-comment" + postId).val();
+  var comment = $('#' + postId).find(".insert-comment").val();
   //name of the commentator
   var name = lastname + " " + firstname;
   
@@ -106,7 +101,7 @@ function postComment(postId) {
   //codesample of a comment
   var commentCode = $(".commentCodeSample").html();
 
-  var comments = $("#all-comments" + postId).html() + commentCode;
+  var comments = $('#' + postId).find(".all-comments").html() + commentCode;
   
   if(comment)
   {
@@ -123,8 +118,8 @@ function postComment(postId) {
       },
       success: function() {
         
-        $("#all-comments" + postId).html( comments );
-        $(".insert-comment" + postId).val("");
+        $('#' + postId).find(".all-comments").html( comments );
+        $('#' + postId).find(".insert-comment").val("");
       }
     });
   }

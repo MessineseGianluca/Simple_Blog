@@ -17,7 +17,7 @@
   function printPostCode($name, $surname, $description, $post_id) {
  	
     echo "
-      <div class='post-box row'>
+      <div class='post-box row' id=" . $post_id . ">
         <div class='col-lg-1 col-xs-1' style='padding: 0'>   
           <img src='img/user.jpg' class='img-rounded user-img'>
         </div>
@@ -39,7 +39,7 @@
                 <button class='like'>
                   <span class='glyphicon glyphicon-heart-empty'></span>
                 </button>
-                <button class='comm' data-id='" . $post_id ."'>
+                <button class='comm'>
                   <span class='glyphicon glyphicon-comment'></span>
                 </button>
                 <button class='reblog pull-right'>
@@ -57,7 +57,7 @@
     $comments = $data->getComments($post_id);         
           
     echo "
-      <div id='all-comments" . $post_id . "' 
+      <div class='all-comments' 
            style='display: none'>
     ";
 
@@ -81,21 +81,19 @@
     echo "</div>"; #close <div class='all-comments'...>
           
     echo " 
-      <div id='write-comment" . $post_id . "' 
+      <div class='write-comment' 
            style='display: none'
       >
       <div class='panel-body'>
         <form class='comment-form' action='' method='post'>
           <textarea class='form-control elastic-box 
-                           insert-comment" . $post_id . "
-                          ' 
+                           insert-comment' 
                     style='resize: none' rows='2' name='comment'  
                     placeholder='Insert a comment...'></textarea>
 
           <button type='button' 
                   class='btn btn-defaul btn-xs comment-button' 
                   style='margin-top:2px;' 
-                  data-id='" . $post_id . "'
           >Comment</button>
         </form>
       </div>
