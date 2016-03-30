@@ -23,15 +23,15 @@ $( document ).ready(function() {
 
 
 function prepare() {
-  $('.comment-form button').off("click").click( function() {
+  $('.comment-form button').click(function() {
     postComment($(this).parents('.post-box').attr("id"));
   });
 
-  $('.post-submit').off("click").click(function() {
+  $('.post-submit').click(function() {
     postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
   });
 
-  $('.post-box .comm').off("click").click(function() {
+  $('.post-box .comm').click(function() {
     postId = $(this).parents(".post-box").attr("id");
     status = $('#' + postId ).find('.write-comment').css('display');
     if(status === "none" ) {
