@@ -10,13 +10,6 @@ $( document ).ready(function() {
       $('.post-submit').css('display', 'none');
   });
   
-  /*$('.add-img').click(function() {
-    if($('.choose-img').css("display") === "none")
-      $('.choose-img').removeClass("hidden");
-    else 
-      $('.choose-img').addClass("hidden");
-  })*/
-
   prepare();
 
 });
@@ -28,7 +21,9 @@ function prepare() {
   });
 
   $('.post-submit').click(function() {
-    postNewPost(parseInt($(this).attr("dataNextPostId")) + 1);
+    newPostId = parseInt($(this).attr("dataNextPostId")) + 1;
+    userId = parseInt($(this).attr("dataAuthorId"));
+    postNewPost(newPostId, userId);
   });
 
   $('.post-box .comm').click(function() {
@@ -47,7 +42,7 @@ function prepare() {
 }
 
 
-function postNewPost(postId) {
+function postNewPost(postId, userId) {
 
   var description = $('.text-post').val();
   var name = lastname + " " + firstname;
@@ -55,6 +50,7 @@ function postNewPost(postId) {
   $('.postCodeSample .post-box').attr("id", postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
   $('.postCodeSample .text').html("<h3> " + description + "</h3>");
+  $('.postCodeSample .user-img').attr("src", "img/" + userId);
 
   var postCode = $(".postCodeSample").html();
 

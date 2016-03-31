@@ -100,7 +100,9 @@
                  class='btn btn-defaul post-submit' 
                  type='button'
                  value='Share'
-                 dataNextPostId=<?php echo $data->findLastPostId(); ?>>
+                 dataNextPostId=<?php echo $data->findLastPostId(); ?>
+                 dataAuthorId=<?php echo $_SESSION['id']; ?>
+                 >
           
           <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
 
@@ -121,6 +123,7 @@
         #PRINT EACH LOADED POST WITH ITS COMMENTS
         while($post = $result->fetch_assoc()) {     
           printPostCode(
+            $post['user_id'],
             $post['name'], 
             $post['surname'],
             $post['description'],

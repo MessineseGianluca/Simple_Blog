@@ -28,9 +28,13 @@
     
     $pass = cryptPass($pass);
     
-    $data->signUp($email, $pass, $name, $surname);
+    $user_id = $data->signUp($email, $pass, $name, $surname);
   
     $data->disconnectMysql();
+    
+    $img_name = $_FILES['imgToUpdate']['name'];
+    if($img_name == "") echo "failed";
+    else move_uploaded_file($_FILES['imgToUpdate']['tmp_name'], 'img/' . $user_id);
     
     header('Location: login.php');
   }

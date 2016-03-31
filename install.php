@@ -31,8 +31,7 @@
           password VARCHAR(255) NOT NULL,
           signing_up_date TIMESTAMP,
           name VARCHAR(20) NOT NULL,
-          surname VARCHAR(20) NOT NULL
-          );
+          surname VARCHAR(20) NOT NULL);
         ' ,
        
         'CREATE TABLE Posts (

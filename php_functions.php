@@ -33,7 +33,6 @@
           );
         }
         $this->status = "Connected to the server. <br>";
-        //echo $this->status;
         
       }  
     
@@ -45,6 +44,17 @@
            VALUES('$email', '$pass', '$name', '$surname');      
           "
         ) or die($this->connection->error);
+        
+        //Get the user_id of the new User
+        $result = $this->connection->query(
+            "SELECT user_id
+             FROM Users
+             WHERE email='$email';
+            "
+        ) or die($this->connection->error);
+        
+        $result = $result->fetch_assoc();
+        return $result['user_id'];
       }
       
       #Return true if the email  already exits, else return false 
@@ -118,15 +128,15 @@
 
         $posts = $this->connection->query(
             "SELECT Posts.description, Posts.sharing_date, Posts.post_id,
-                    Users.name, Users.surname
+                    Users.name, Users.surname, Users.user_id
              FROM Posts
              INNER JOIN Users
              ON Users.user_id = Posts.user_id
              ORDER BY sharing_date DESC;
             "
         );
-        return $posts;
 
+        return $posts;
       }
 
       public function getComments($post) {

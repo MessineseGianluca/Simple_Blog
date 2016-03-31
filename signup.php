@@ -16,7 +16,8 @@
     <form class="form-signin"
           name='signup' 
           action='validate_new_user.php' 
-          method='post'>
+          method='post'
+          enctype="multipart/form-data">
       <h2>Please sign in</h2>
 
       <input type="text" 
@@ -49,6 +50,17 @@
              name="pass2" 
              placeholder="Repeat password" 
              required>
+      
+      <button class="btn btn-success upload-btn" 
+              type="button">
+              <span class="glyphicon glyphicon-folder-open"></span>
+               Picture 
+      </button>
+      <input class='hidden upload-input' 
+             type='file' 
+             name='imgToUpdate'
+             value="upload">
+
       <div class="row" style="margin-top: 20px;">
         <div class="col-lg-5">       
           <button class="btn btn-lg btn-warning btn-block" type="submit">Sign up</button>
@@ -68,6 +80,7 @@
   
   
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
+  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/upload.js"></script>  
 </body>
 </html>

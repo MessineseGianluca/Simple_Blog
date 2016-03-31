@@ -14,12 +14,17 @@
     "; 
   } 
 
-  function printPostCode($name, $surname, $description, $post_id) {
- 	
+  function printPostCode($user_id, $name, $surname, $description, $post_id) {
+ 	  
+    //find the img of the post's author
+    if(file_exists('img/' . $user_id)) $img_name = $user_id;
+    else $img_name = "user";
+
     echo "
       <div class='post-box row' id=" . $post_id . ">
         <div class='col-lg-1 col-xs-1' style='padding: 0'>   
-          <img src='img/user.jpg' class='img-rounded user-img'>
+          <img src='img/" . $img_name . "' 
+               class='img-rounded user-img'>
         </div>
         <div class='col-lg-11 col-xs-11'>
           <div class='row'>
