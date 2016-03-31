@@ -24,7 +24,7 @@
         href="bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="css/mycss.css">  
 </head>
-<body>
+<body class='colored-body'>
   
   <!-- NAVBAR -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -83,12 +83,7 @@
   <div class='container col-lg-6'>
     <!-- Write new post area -->
     <div class = 'row'>
-      <div class="form-group write-post col-lg-12">
-        
-        <!--<button class='add-img pull-right'>
-          <span class='glyphicon glyphicon-picture'></span>
-        </button>-->
-
+      <div class="form-group write-post col-lg-12 col-xs-12">
         <form action='' method='post'>
           <textarea class='form-control elastic-box text-post'
                     style='resize: none;'
@@ -96,13 +91,11 @@
                     name='description'
                     placeholder='Insert some text...'></textarea>
           
-          <input style='float: right;' 
-                 class='btn btn-defaul post-submit' 
-                 type='button'
-                 value='Share'
+          <button style='float: right;' 
+                 class='btn btn-default post-submit' 
                  dataNextPostId=<?php echo $data->findLastPostId(); ?>
                  dataAuthorId=<?php echo $_SESSION['id']; ?>
-                 >
+                 ><span class="glyphicon glyphicon-pencil"></span></button>
           
           <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
 

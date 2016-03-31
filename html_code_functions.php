@@ -21,36 +21,35 @@
     else $img_name = "user";
 
     echo "
-      <div class='post-box row' id=" . $post_id . ">
-        <div class='col-lg-1 col-xs-1' style='padding: 0'>   
-          <img src='img/" . $img_name . "' 
-               class='img-rounded user-img'>
-        </div>
-        <div class='col-lg-11 col-xs-11'>
-          <div class='row'>
-            <div class='panel panel-info'>
-
-              <div class='panel-heading'>
-                <h3 class='panel-title author'>
-                  <b>" . $surname . " " . $name . "</b>
-                </h3>
+      <div class='row post-box' id=" . $post_id . ">
+        <div class='col-lg-12 col-xs-12'>
+          <div class='panel'>
+            <div class='panel-heading'>
+              <div class='row'>
+                <div class='col-lg-1 col-xs-2 img-container'>
+                  <img class='img-rounded user-img' 
+                       src='img/" . $img_name . "' >
+                </div>
+                <div class='col-lg-11 col-xs-10'>
+                  <strong class='author'>" . $surname . " " . $name . "</strong>
+                  <br> 
+                  <span class='text-muted'>commented on</span>
+                </div>
               </div>
-
-              <div class='panel-body text'>
-                <h3> ". $description . " </h3>
-              </div>
-
-              <div class='panel-footer'>
-                <button class='like'>
-                  <span class='glyphicon glyphicon-heart-empty'></span>
-                </button>
-                <button class='comm'>
-                  <span class='glyphicon glyphicon-comment'></span>
-                </button>
-                <button class='reblog pull-right'>
-                  <span class='glyphicon glyphicon-plus'></span>
-                </button>
-              </div>
+          </div><!-- /panel-heading -->
+          <div class='panel-body text'>
+            <h3 class='text'>" . $description . "</h3>
+          </div><!-- /panel-body -->
+          <div class='panel-footer'>
+            <button class='like'>
+              <span class='glyphicon glyphicon-heart-empty'></span>
+            </button>
+            <button class='comm'>
+              <span class='glyphicon glyphicon-comment'></span>
+            </button>
+            <button class='reblog pull-right'>
+              <span class='glyphicon glyphicon-plus'></span>
+            </button>
     ";
 
           
@@ -62,8 +61,7 @@
     $comments = $data->getComments($post_id);         
           
     echo "
-      <div class='all-comments' 
-           style='display: none'>
+      <div class='all-comments'>
     ";
 
     #CHECK IF THERE ARE COMMENTS AND PRINT THEM
@@ -83,35 +81,34 @@
 
     $data->disconnectMysql();
 
-    echo "</div>"; #close <div class='all-comments'...>
+    echo "</div>"; #close /all-comments
           
     echo " 
       <div class='write-comment' 
            style='display: none'
       >
-      <div class='panel-body'>
-        <form class='comment-form' action='' method='post'>
-          <textarea class='form-control elastic-box 
-                           insert-comment' 
-                    style='resize: none' rows='2' name='comment'  
-                    placeholder='Insert a comment...'></textarea>
+        <div class='panel-body'>
+          <form class='comment-form' action='' method='post'>
+            <textarea class='form-control elastic-box 
+                             insert-comment' 
+                      style='resize: none' rows='2' name='comment'  
+                      placeholder='Insert a comment...'></textarea>
 
-          <button type='button' 
-                  class='btn btn-defaul btn-xs comment-button' 
-                  style='margin-top:2px;' 
-          >Comment</button>
-        </form>
+            <button type='button' 
+                    class='btn btn-default btn-xs comment-button' 
+            > <span class='glyphicon glyphicon-pencil'></span> Comment </button>
+          </form>
+        </div>
       </div>
-    </div>
     ";
 
     echo "
-      </div>
-    </div>
+      </div><!-- /panel-footer -->
+    </div><!-- /panel -->
     ";
           
     echo "     
-      </div>
-    </div>
+      </div><!-- col-lg-5 col-xs-12 -->
+    </div><!-- /row -->
     ";
   }
