@@ -17,32 +17,40 @@ $( document ).ready(function() {
 
 function prepare() {
   $('.comment-form button').click(function() {
-    postComment($(this).parents('.post-box').attr("id"));
+    postId = $(this).parents('.post-box').attr("id");
+    postComment(postId);
   });
 
   $('.post-submit').click(function() {
     newPostId = parseInt($(this).attr("dataNextPostId")) + 1;
-    userId = parseInt($(this).attr("dataAuthorId"));
-    postNewPost(newPostId, userId);
+    postNewPost(newPostId);
   });
 
-  $('.post-box .comm').click(function() {
+  $('.comm').click(function() {
     postId = $(this).parents(".post-box").attr("id");
     status = $('#' + postId ).find('.write-comment').css('display');
-    if(status === "none" ) {
-      $('#' + postId).find('.all-comments').css('display', 'block');
+    if(status === "none" ) 
       $('#' + postId).find('.write-comment').css('display', 'block');
-    }
-    else {
-      $('#' + postId).find('.all-comments').css('display', 'none');
-      $('#' + postId).find('.write-comment').css('display', 'none');
-    }
+    else 
+      $('#' + postId).find('.write-comment').css('display', 'none');   
   });
 
+  $('.comments').click(function() {
+    postId = $(this).parents(".post-box").attr("id");
+    status = $('#' + postId ).find('.all-comments').css('display');
+    if(status === "none" ) 
+      $('#' + postId).find('.all-comments').css('display', 'block');
+    else 
+      $('#' + postId).find('.all-comments').css('display', 'none');  
+  });
+  
+  $('.img').error(function() {
+    $(this).attr("src", "img/user");
+  });
 }
 
 
-function postNewPost(postId, userId) {
+function postNewPost(postId) {
 
   var description = $('.text-post').val();
   var name = lastname + " " + firstname;
@@ -93,6 +101,7 @@ function postComment(postId) {
   $(".commentCodeSample .username").text(name);
   $(".commentCodeSample .date").text(date);
   $(".commentCodeSample .comment").text(comment);
+  $('.commentCodeSample .user-comm-img').attr("src", img);
 
   //codesample of a comment
   var commentCode = $(".commentCodeSample").html();

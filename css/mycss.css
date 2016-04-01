@@ -20,6 +20,7 @@
 
 .comment-box {
   padding: 0px 15px;
+  margin-top: 10px;
 }
 .user-img {
   width: 40px;
@@ -30,7 +31,7 @@
   display: none;  
 }
 
-.like, .comm, .reblog {
+.like, .comm, .reblog, .comments {
   background-color: transparent;
   border: none;
   outline:none;
@@ -38,10 +39,6 @@
 
 .like {
   color: red;
-}
-
-.comm {
-  color: blue;
 }
 
 .add-post {
@@ -60,6 +57,10 @@
     max-width: 330px;
     padding: 15px;
     margin: 0 auto;
+}
+
+.date {
+  font-size: 12px;
 }
 
 .upload-btn {
@@ -88,4 +89,23 @@
 
 .comment-button {
   float: right;
+  margin-top: 2px;
+}
+
+.comments strong {
+  color: blue;
+  font-size: 14px;
+}
+
+.comment {
+  margin: 0;
+}
+
+.user-comm-img {
+  width: 30px;
+  height: 30px;
+}
+
+.comment-box .col-lg-11 {
+  padding-left: 0px;
 }

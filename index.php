@@ -148,6 +148,8 @@
   <script>
     firstname = "<?php echo $_SESSION['name']; ?>";
     lastname =  "<?php echo $_SESSION['surname']; ?>";
+    userId = "<?php echo $_SESSION['id']; ?>";
+    img = "img/" + "<?php echo getImg($_SESSION['id']); ?>";
   </script>
 
   <script src="js/myjs.js"></script>

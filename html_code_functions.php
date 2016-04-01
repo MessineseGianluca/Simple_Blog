@@ -1,25 +1,35 @@
 <?php
   
   #A FUNCTION FOR PRINTING A COMMENT
-  function printCommentCode($name, $surname, $comment, $comment_date) { 
-    
+  function printCommentCode(
+    $user_id, 
+    $name, 
+    $surname, 
+    $comment, 
+    $comment_date
+  ) {
+
+    $img_name = getImg($user_id);
     echo "
-      <div class='panel-body comment-box'>
-        <a href='#'>
-          <h5 class='username'>" . $surname . " " . $name . "</h5>
-        </a>
-        <h6 class='date'>" . $comment_date . "</h6>
-        <h5 class='comment'>" . $comment . "</h5>
+      <div class='panel-body comment-box row' style='border-bottom: 1px;'>
+        
+        <div class='col-lg-1 col-xs-2'>
+          <img class='img-rounded user-comm-img img-container' 
+               src='img/" . $img_name . "' >
+        </div>
+        <div class='col-lg-11 col-xs-10'>
+          <strong class='username'>" . $surname . " " . $name . "</strong>
+          <span class='text-muted'>
+            commented on: <span class='date'>" . $comment_date . "</span>
+          </span>
+          <h4 class='comment'>" . $comment . "</h4>
+        </div>
       </div>
     "; 
   } 
 
   function printPostCode($user_id, $name, $surname, $description, $post_id) {
- 	  
-    //find the img of the post's author
-    if(file_exists('img/' . $user_id)) $img_name = $user_id;
-    else $img_name = "user";
-
+    $img_name = getImg($user_id);
     echo "
       <div class='row post-box' id=" . $post_id . ">
         <div class='col-lg-12 col-xs-12'>
@@ -33,7 +43,7 @@
                 <div class='col-lg-11 col-xs-10'>
                   <strong class='author'>" . $surname . " " . $name . "</strong>
                   <br> 
-                  <span class='text-muted'>commented on</span>
+                  <span class='text-muted'>posted on: </span>
                 </div>
               </div>
           </div><!-- /panel-heading -->
@@ -47,41 +57,13 @@
             <button class='comm'>
               <span class='glyphicon glyphicon-comment'></span>
             </button>
+            <button class='comments'>
+              <strong>all comments</strong>
+            </button>
             <button class='reblog pull-right'>
               <span class='glyphicon glyphicon-plus'></span>
             </button>
     ";
-
-          
-    $data = new MysqlConnector();
-  
-    $data->connectMysql();
-
-    #LOAD COMMENTS OF THE CURRENT POST
-    $comments = $data->getComments($post_id);         
-          
-    echo "
-      <div class='all-comments'>
-    ";
-
-    #CHECK IF THERE ARE COMMENTS AND PRINT THEM
-    if ($comments->num_rows !== 0) { 
-
-      #PRINT COMMENTS OF THE POST
-      while($comment = $comments->fetch_assoc()) {
-        printCommentCode(
-          $comment['name'], 
-          $comment['surname'], 
-          $comment['description'], 
-          $comment['sharing_date']
-        );
-      }
-
-    }
-
-    $data->disconnectMysql();
-
-    echo "</div>"; #close /all-comments
           
     echo " 
       <div class='write-comment' 
@@ -101,7 +83,35 @@
         </div>
       </div>
     ";
+          
+    $data = new MysqlConnector();
+  
+    $data->connectMysql();
 
+    #LOAD COMMENTS OF THE CURRENT POST
+    $comments = $data->getComments($post_id);         
+          
+    echo "<div class='all-comments'>";
+
+    #CHECK IF THERE ARE COMMENTS AND PRINT THEM
+    if ($comments->num_rows !== 0) { 
+
+      #PRINT COMMENTS OF THE POST
+      while($comment = $comments->fetch_assoc()) {
+        printCommentCode(
+          $comment['user_id'],
+          $comment['name'], 
+          $comment['surname'], 
+          $comment['description'], 
+          $comment['sharing_date']
+        );
+      }
+
+    }
+
+    $data->disconnectMysql();
+
+    echo "</div>"; #close /all-comments
     echo "
       </div><!-- /panel-footer -->
     </div><!-- /panel -->
@@ -111,4 +121,10 @@
       </div><!-- col-lg-5 col-xs-12 -->
     </div><!-- /row -->
     ";
+  }
+
+  function getImg($user_id) {   
+    //find the img of the post's author
+    if(file_exists('img/' . $user_id)) return $user_id;
+    return "user";
   }
