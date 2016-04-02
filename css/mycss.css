@@ -16,6 +16,7 @@
 
 .all-comments{
   display: none;
+  margin-bottom: 10px;
 }
 
 .comment-box {
@@ -28,7 +29,7 @@
 }
 
 .post-submit {
-  display: none;  
+  display: none;
 }
 
 .like, .comm, .reblog, .comments {

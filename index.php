@@ -51,7 +51,9 @@
           <div class="form-group">
             <input type="text" class="form-control" placeholder="Search">
           </div>
-          <button type="submit" class="btn btn-default">Submit</button>
+          <button type="submit" class="btn btn-default">
+            <span class='glyphicon glyphicon-search'></span> 
+          </button>
         </form>
         <ul class="nav navbar-nav navbar-right">
           <li class="dropdown">
@@ -80,10 +82,10 @@
     </div><!-- /.container-fluid -->
   </nav> 
   
-  <div class='container col-lg-6'>
+  <div class='container col-lg-6 col-md-8 .col-sm-12 col-xs-12'>
     <!-- Write new post area -->
     <div class = 'row'>
-      <div class="form-group write-post col-lg-12 col-xs-12">
+      <div class="form-group write-post col-lg-12">
         <form action='' method='post'>
           <textarea class='form-control elastic-box text-post'
                     style='resize: none;'
@@ -91,7 +93,7 @@
                     name='description'
                     placeholder='Insert some text...'></textarea>
           
-          <button style='float: right;' 
+          <button style='float: right; margin-bottom: 10px;' 
                   class='btn btn-default post-submit'
                   type='button'
                   dataNextPostId=<?php echo $data->findLastPostId(); ?>

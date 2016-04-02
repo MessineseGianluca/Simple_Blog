@@ -79,7 +79,8 @@
           <form class='comment-form' action='' method='post'>
             <textarea class='form-control elastic-box 
                              insert-comment' 
-                      style='resize: none' rows='2' name='comment'  
+                      style='resize: none;' 
+                      rows='2' name='comment'  
                       placeholder='Insert a comment...'></textarea>
 
             <button type='button' 
