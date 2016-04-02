@@ -125,6 +125,9 @@
       
 
       public function getPosts() {
+         /*select P.post_id from Posts P where P.user_id = 1 OR P.user_id in(   select F.followed_id   from Followings F, Users U   where F.followed_id = U.user_id AND F.follower_id = 1) order by P.sharing_date;
+
+         */
 
         $posts = $this->connection->query(
             "SELECT Posts.description, Posts.sharing_date, Posts.post_id,

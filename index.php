@@ -94,7 +94,6 @@
           <button style='float: right;' 
                  class='btn btn-default post-submit' 
                  dataNextPostId=<?php echo $data->findLastPostId(); ?>
-                 dataAuthorId=<?php echo $_SESSION['id']; ?>
                  ><span class="glyphicon glyphicon-pencil"></span></button>
           
           <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        

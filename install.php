@@ -9,7 +9,8 @@
   function deleteTables($n_statement) {
       
     $dropper = array(
-        'DROP TABLE Comments;' , 
+        'DROP TABLE Followings;', 
+        'DROP TABLE Comments;' ,
         'DROP TABLE Posts;' ,
         'DROP TABLE Users;'
     );
@@ -39,7 +40,7 @@
           description TEXT NOT NULL,
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
-          FOREIGN KEY (user_id) REFERENCES Users(user_id) );
+          FOREIGN KEY(user_id) REFERENCES Users(user_id) );
         ' ,
         
         'CREATE TABLE Comments (
@@ -48,10 +49,16 @@
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
           post_id INT UNSIGNED NOT NULL,
-          FOREIGN KEY (user_id) REFERENCES Users(user_id),
-          FOREIGN KEY (post_id) REFERENCES Posts(post_id) );
-        '        
-        
+          FOREIGN KEY(user_id) REFERENCES Users(user_id),
+          FOREIGN KEY(post_id) REFERENCES Posts(post_id) );
+        ' ,
+        'CREATE TABLE Followings (
+          follower_id SMALLINT UNSIGNED NOT NULL,
+          followed_id SMALLINT UNSIGNED NOT NULL,
+          PRIMARY KEY(follower_id, followed_id),
+          FOREIGN KEY(follower_id) REFERENCES Users(user_id),
+          FOREIGN KEY(followed_id) REFERENCES Users(user_id) );
+        '      
     );
     
     return $creator[$n_statement];
@@ -67,7 +74,7 @@
   $installer->connectMysql();
  
   #Uninstall old tables
-  for($i = 0; $i < 3; $i++) {  
+  for($i = 0; $i < 4; $i++) {  
     if($installer->connection->query(deleteTables($i)) === TRUE) {
       echo "Deleted <br>";    
     }
@@ -77,7 +84,7 @@
   }
   
   #Install new tables 
-  for($i = 0; $i < 3; $i++) {
+  for($i = 0; $i < 4; $i++) {
     if($installer->connection->query(addTables($i)) === TRUE) {
       echo "Created <br>";
     }
