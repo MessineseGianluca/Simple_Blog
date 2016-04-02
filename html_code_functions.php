@@ -53,12 +53,11 @@
           <div class='panel-footer'>
             <button class='like'>
               <span class='glyphicon glyphicon-heart-empty'></span>
+              <strong>likes</strong>
             </button>
             <button class='comm'>
               <span class='glyphicon glyphicon-comment'></span>
-            </button>
-            <button class='comments'>
-              <strong>all comments</strong>
+              <strong>comments</strong>
             </button>
             <button class='reblog pull-right'>
               <span class='glyphicon glyphicon-plus'></span>
@@ -66,9 +65,7 @@
     ";
           
     echo " 
-      <div class='write-comment' 
-           style='display: none'
-      >
+      <div class='write-comment'>
         <div class='panel-body'>
           <form class='comment-form' action='' method='post'>
             <textarea class='form-control elastic-box 

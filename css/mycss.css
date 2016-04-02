@@ -37,6 +37,10 @@
   outline:none;
 }
 
+.comm {
+  color: blue;
+}
+
 .like {
   color: red;
 }
@@ -90,11 +94,6 @@
 .comment-button {
   float: right;
   margin-top: 2px;
-}
-
-.comments strong {
-  color: blue;
-  font-size: 14px;
 }
 
 .comment {

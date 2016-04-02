@@ -26,16 +26,8 @@ function prepare() {
     postNewPost(newPostId);
   });
 
-  $('.comm').click(function() {
-    postId = $(this).parents(".post-box").attr("id");
-    status = $('#' + postId ).find('.write-comment').css('display');
-    if(status === "none" ) 
-      $('#' + postId).find('.write-comment').css('display', 'block');
-    else 
-      $('#' + postId).find('.write-comment').css('display', 'none');   
-  });
 
-  $('.comments').click(function() {
+  $('.comm').click(function() {
     postId = $(this).parents(".post-box").attr("id");
     status = $('#' + postId ).find('.all-comments').css('display');
     if(status === "none" ) 
@@ -122,9 +114,9 @@ function postComment(postId) {
         post: postId
       },
       success: function() {
-        
-        $('#' + postId).find(".all-comments").html( comments );
-        $('#' + postId).find(".insert-comment").val("");
+        $('#' + postId).find('.all-comments').css('display', 'block');
+        $('#' + postId).find('.all-comments').html( comments );
+        $('#' + postId).find('.insert-comment').val('');
       }
     });
   }
