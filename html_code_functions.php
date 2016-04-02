@@ -28,7 +28,14 @@
     "; 
   } 
 
-  function printPostCode($user_id, $name, $surname, $description, $post_id) {
+  function printPostCode(
+    $user_id, 
+    $name, 
+    $surname, 
+    $description, 
+    $post_id,
+    $sharing_date
+  ) {
     $img_name = getImg($user_id);
     echo "
       <div class='row post-box' id=" . $post_id . ">
@@ -43,7 +50,9 @@
                 <div class='col-lg-11 col-xs-10'>
                   <strong class='author'>" . $surname . " " . $name . "</strong>
                   <br> 
-                  <span class='text-muted'>posted on: </span>
+                  <span class='text-muted date'>
+                    posted on: " . $sharing_date . 
+                  "</span>
                 </div>
               </div>
           </div><!-- /panel-heading -->

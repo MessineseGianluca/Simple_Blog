@@ -92,9 +92,10 @@
                     placeholder='Insert some text...'></textarea>
           
           <button style='float: right;' 
-                 class='btn btn-default post-submit' 
-                 dataNextPostId=<?php echo $data->findLastPostId(); ?>
-                 ><span class="glyphicon glyphicon-pencil"></span></button>
+                  class='btn btn-default post-submit'
+                  type='button'
+                  dataNextPostId=<?php echo $data->findLastPostId(); ?>
+                  ><span class="glyphicon glyphicon-pencil"></span></button>
           
           <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
 
@@ -119,7 +120,8 @@
             $post['name'], 
             $post['surname'],
             $post['description'],
-            $post['post_id']
+            $post['post_id'],
+            $post['sharing_date']
           );
         }
       ?>

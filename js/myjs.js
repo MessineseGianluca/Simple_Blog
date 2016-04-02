@@ -16,11 +16,13 @@ $( document ).ready(function() {
 
 
 function prepare() {
+  //When user share a comment
   $('.comment-form button').click(function() {
     postId = $(this).parents('.post-box').attr("id");
     postComment(postId);
   });
 
+  //When user shares a post
   $('.post-submit').click(function() {
     newPostId = parseInt($(this).attr("dataNextPostId")) + 1;
     postNewPost(newPostId);
@@ -35,10 +37,6 @@ function prepare() {
     else 
       $('#' + postId).find('.all-comments').css('display', 'none');  
   });
-  
-  $('.img').error(function() {
-    $(this).attr("src", "img/user");
-  });
 }
 
 
@@ -50,8 +48,9 @@ function postNewPost(postId) {
   $('.postCodeSample .post-box').attr("id", postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
   $('.postCodeSample .text').html("<h3> " + description + "</h3>");
-  $('.postCodeSample .user-img').attr("src", "img/" + userId);
-
+  $(".postCodeSample .date").text(getSqlFormatDate());
+  $('.postCodeSample .user-img').attr("src", img);
+  
   var postCode = $(".postCodeSample").html();
 
   if(description)
@@ -76,22 +75,13 @@ function postNewPost(postId) {
 
 function postComment(postId) {
 
-  //Date in SQL format 
-  var date = new Date();
-  date = date.getUTCFullYear() + '-' +
-    ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
-    ('00' + date.getUTCDate()).slice(-2) + ' ' + 
-    ('00' + date.getUTCHours()).slice(-2) + ':' + 
-    ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
-    ('00' + date.getUTCSeconds()).slice(-2);
-
   //comment inserted
   var comment = $('#' + postId).find(".insert-comment").val();
   //name of the commentator
   var name = lastname + " " + firstname;
   
   $(".commentCodeSample .username").text(name);
-  $(".commentCodeSample .date").text(date);
+  $(".commentCodeSample .date").text(getSqlFormatDate());
   $(".commentCodeSample .comment").text(comment);
   $('.commentCodeSample .user-comm-img').attr("src", img);
 
@@ -120,4 +110,15 @@ function postComment(postId) {
       }
     });
   }
+}
+
+function getSqlFormatDate() {
+  //Date in SQL format 
+  var date = new Date();
+  return date.getUTCFullYear() + '-' +
+    ('00' + (date.getUTCMonth()+1)).slice(-2) + '-' +
+    ('00' + date.getUTCDate()).slice(-2) + ' ' + 
+    ('00' + date.getUTCHours()).slice(-2) + ':' + 
+    ('00' + date.getUTCMinutes()).slice(-2) + ':' + 
+    ('00' + date.getUTCSeconds()).slice(-2);
 }

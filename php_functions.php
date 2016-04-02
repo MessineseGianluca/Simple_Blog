@@ -106,8 +106,9 @@
         return $lastone['MAX(post_id)'];
       }
 
-      public function addPost($content) {
+      public function addPost() {
         
+        $content = $_POST['description'];
         $id = $_SESSION['id'];
         
         //Add escape char \ in before special characters 
