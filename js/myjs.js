@@ -9,6 +9,19 @@ $( document ).ready(function() {
     else 
       $('.post-submit').css('display', 'none');
   });
+
+  $('.search').keyup(function() {
+    text = $('.search').val();
+    if(text !== '') {
+      searchContent(text);
+    }
+    else { 
+      $('.search-result').html("");
+      if($('.search-result').css("display") === 'block')
+        $('.dropdown-search').trigger("click");
+    }
+
+  });
   
   prepare();
 
@@ -31,6 +44,7 @@ function prepare() {
 
   $('.comm').click(function() {
     postId = $(this).parents(".post-box").attr("id");
+
     status = $('#' + postId ).find('.all-comments').css('display');
     if(status === "none" ) 
       $('#' + postId).find('.all-comments').css('display', 'block');
@@ -111,6 +125,31 @@ function postComment(postId) {
     });
   }
 }
+
+function searchContent(text) {
+  $(".search-result").html();
+  $.ajax({
+    type: "POST",
+    url: "search_users.php",
+    data: {text: text},
+    cache: false,
+    success: function(html)
+    { 
+      $(".search-result").html(html);
+      if($('.search-result').css("display") !== 'block')
+        $(".dropdown-search").trigger("click");
+        $('.search').focus();
+      if($('.search-result').html() == "") {
+        $(".search-result").append(
+          "<li><strong> Result not found...<strong></li>"
+        );
+      }
+    }
+  });
+  
+
+}
+
 
 function getSqlFormatDate() {
   //Date in SQL format 

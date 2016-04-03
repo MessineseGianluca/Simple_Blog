@@ -16,7 +16,6 @@
 
 .all-comments{
   display: none;
-  margin-bottom: 10px;
 }
 
 .comment-box {
@@ -91,9 +90,9 @@
   padding: 0px;
   margin-top: 10px;
 }
-
+    padding: 0px 10px 0px 0px;
+    margin-left: 30px;
 .comment-button {
-  float: right;
   margin-top: 2px;
 }
 
@@ -108,4 +107,25 @@
 
 .comment-box .col-lg-11 {
   padding-left: 0px;
+}
+
+.search-result {
+  padding: 5px 10px 0px 0px;
+  margin-left: 30px;
+}
+
+.search-result li {
+  margin-bottom: 5px;
+  margin-left: 5px;
+}
+
+.search-result li button {
+  margin-top: 5px;
+  margin-left: 5px;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:focus, 
+.navbar-default .navbar-nav>.open>a:hover {
+  background-color: rgb(248, 248, 248);
 }

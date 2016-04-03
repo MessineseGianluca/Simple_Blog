@@ -84,7 +84,7 @@
                       placeholder='Insert a comment...'></textarea>
 
             <button type='button' 
-                    class='btn btn-default btn-xs comment-button' 
+                    class='btn btn-default btn-xs comment-button pull-right' 
             > <span class='glyphicon glyphicon-pencil'></span> Comment </button>
           </form>
         </div>
@@ -129,6 +129,33 @@
     </div><!-- /row -->
     ";
   }
+  
+  function printUserRow($user) {
+    echo "
+      <li>
+       <img class='user-img img-rounded' 
+            src='img/" . getImg($user['user_id']) . "'>           
+        <strong>" . $user['surname'] . "<strong>
+        <strong>" . $user['name'] . "</strong>
+    ";
+
+    if($user['follow']) 
+      echo "
+        <button class='follow pull-right' 
+          type=button> 
+          Follow 
+        </button>
+      ";
+
+    else 
+       echo "
+        <button class='unfollow pull-right' 
+          type=button> 
+          Unfollow 
+        </button>
+      ";
+  }
+
 
   function getImg($user_id) {   
     //find the img of the post's author

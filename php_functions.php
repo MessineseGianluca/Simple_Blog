@@ -124,6 +124,28 @@
         ) or die($this->connection->error);
       }
       
+      public function getUsers($text) {
+        $text = $this->connection->real_escape_string( $text ); 
+        //get all users
+        $users = $this->connection->query(
+          "SELECT user_id, name, surname
+           FROM Users
+           WHERE name like '%" . $text . "%' or surname like '%" . $text . "%'; 
+          "
+        );
+
+        return $users;
+      }
+
+      public function getFollowedUsers() {
+        $followed_users = $this->connection->query(
+          "SELECT followed_id
+           FROM Followings
+           WHERE follower_id =" . $_SESSION['id'] . ";" 
+        );
+
+        return $followed_users;
+      }
 
       public function getPosts() {
          /*select P.post_id from Posts P where P.user_id = 1 OR P.user_id in(   select F.followed_id   from Followings F, Users U   where F.followed_id = U.user_id AND F.follower_id = 1) order by P.sharing_date;
