@@ -132,7 +132,7 @@
            FROM Users
            WHERE (name like '%" . $text . "%' or 
                  surname like '%" . $text . "%') and 
-                 user_id <> 1; 
+                 user_id <> " . $_SESSION['id'] . "; 
           "
         );
 
@@ -165,11 +165,24 @@
       }
 
       public function getPosts() {
-         /*select P.post_id from Posts P where P.user_id = 1 OR P.user_id in(   select F.followed_id   from Followings F, Users U   where F.followed_id = U.user_id AND F.follower_id = 1) order by P.sharing_date;
-
-         */
-
         $posts = $this->connection->query(
+          "SELECT P.post_id, P.description, P.sharing_date, 
+                  U.name, U.surname, U.user_id 
+           FROM Posts P, Users U
+           WHERE (P.user_id = " . $_SESSION['id'] . " OR 
+                 P.user_id IN (   
+                  SELECT F.followed_id   
+                  FROM Followings F, Users U   
+                  WHERE F.followed_id = U.user_id AND 
+                        F.follower_id = " . $_SESSION['id'] . "
+                 )) AND 
+                 P.user_id = U.user_id
+           ORDER BY P.sharing_date DESC;
+          "
+        );
+
+
+        /*$posts = $this->connection->query(
             "SELECT Posts.description, Posts.sharing_date, Posts.post_id,
                     Users.name, Users.surname, Users.user_id
              FROM Posts
@@ -177,7 +190,7 @@
              ON Users.user_id = Posts.user_id
              ORDER BY sharing_date DESC;
             "
-        );
+        );*/
 
         return $posts;
       }

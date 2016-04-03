@@ -51,9 +51,11 @@ function prepare() {
   });
 }
 
-/*********** DELEGATED EVENTS *******************************/
-//WHEN YOU ADD ELEMENTS DINAMICALLY, NORMAL EVENTS DON'WORK
-//WITH THEM. THIS IS A SMART WAY TO DO IT
+/******************** DELEGATED EVENTS ************************/
+/*WHEN YOU ADD ELEMENTS DINAMICALLY, NORMAL EVENTS DON'WORK    |
+/*WITH THEM. THIS IS A SMART WAY TO DO IT INSTEAD OF prepare() |
+/*FUNCTION.                                                    |
+/**************************************************************/
 
 $('.search-result').on('click', 'li .follow', function() {
     
