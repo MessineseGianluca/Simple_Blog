@@ -141,7 +141,7 @@
 
     if($user['follow']) 
       echo "
-        <button class='follow pull-right' 
+        <button class='follow pull-right btn btn-success' 
           type=button> 
           Follow 
         </button>
@@ -149,7 +149,7 @@
 
     else 
        echo "
-        <button class='unfollow pull-right' 
+        <button class='unfollow pull-right btn btn-warning' 
           type=button> 
           Unfollow 
         </button>
