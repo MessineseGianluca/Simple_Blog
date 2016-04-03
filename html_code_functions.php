@@ -141,8 +141,9 @@
 
     if($user['follow']) 
       echo "
-        <button class='follow pull-right btn btn-success' 
-          type=button> 
+        <button class='follow pull-right btn btn-success'
+                data-id='" . $user['user_id'] . "'
+                type=button> 
           Follow 
         </button>
       ";
@@ -150,7 +151,8 @@
     else 
        echo "
         <button class='unfollow pull-right btn btn-warning' 
-          type=button> 
+                data-id='" . $user['user_id'] . "'
+                type=button> 
           Unfollow 
         </button>
       ";

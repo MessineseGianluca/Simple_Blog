@@ -20,13 +20,11 @@ $( document ).ready(function() {
       if($('.search-result').css("display") === 'block')
         $('.dropdown-search').trigger("click");
     }
-
   });
-  
+
   prepare();
 
 });
-
 
 function prepare() {
   //When user share a comment
@@ -53,6 +51,22 @@ function prepare() {
   });
 }
 
+/*********** DELEGATED EVENTS *******************************/
+//WHEN YOU ADD ELEMENTS DINAMICALLY, NORMAL EVENTS DON'WORK
+//WITH THEM. THIS IS A SMART WAY TO DO IT
+
+$('.search-result').on('click', 'li .follow', function() {
+    
+  userToFollow = $(this).attr("data-id");
+  followUser(userToFollow);
+});
+  
+$('.search-result').on('click', 'li .unfollow', function() {
+  
+  userToUnfollow = $(this).attr("data-id");
+  unfollowUser(userToUnfollow);
+});
+/***********************************************************/
 
 function postNewPost(postId) {
 
@@ -147,9 +161,33 @@ function searchContent(text) {
     }
   });
   
-
 }
 
+function followUser(userToFollow) {
+
+  $.ajax({
+    type: "POST",
+    url: "follow.php",
+    data: {user_to_follow: userToFollow},
+    success: function()
+    {  
+      alert("Followed.");
+    }
+  });
+}
+
+function unfollowUser(userToUnfollow) {
+
+  $.ajax({
+    type: "POST",
+    url: "unfollow.php",
+    data: {user_to_unfollow: userToUnfollow},
+    success: function()
+    {  
+      alert("Unfollowed.");
+    }
+  });
+}
 
 function getSqlFormatDate() {
   //Date in SQL format 

@@ -130,7 +130,9 @@
         $users = $this->connection->query(
           "SELECT user_id, name, surname
            FROM Users
-           WHERE name like '%" . $text . "%' or surname like '%" . $text . "%'; 
+           WHERE (name like '%" . $text . "%' or 
+                 surname like '%" . $text . "%') and 
+                 user_id <> 1; 
           "
         );
 
@@ -145,6 +147,21 @@
         );
 
         return $followed_users;
+      }
+      
+      public function follow($user_to_follow) {
+        $this->connection->query(
+          "INSERT INTO Followings 
+           VALUES(" . $_SESSION['id'] . ", " . $user_to_follow . ");" 
+        );
+      }
+      
+      public function unfollow($user_to_unfollow) {
+        $this->connection->query(
+          "DELETE FROM Followings
+           WHERE follower_id = " . $_SESSION['id'] . " and
+                 followed_id = " . $user_to_unfollow . ";"
+        );
       }
 
       public function getPosts() {

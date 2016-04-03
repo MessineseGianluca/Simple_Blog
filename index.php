@@ -50,7 +50,8 @@
 
         <ul class="nav navbar-nav">
           <li class="dropdown">
-            <a href="#" 
+            <a
+               href='#'
                class="dropdown-search" 
                data-toggle="dropdown" 
                role="button" 
