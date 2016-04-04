@@ -137,3 +137,11 @@
 .glyphicon-heart:active {
   font-size: 2em;
 }
+
+@media (min-width: 768px) { 
+
+  .zoom {
+      width: 70%;
+  }
+
+}

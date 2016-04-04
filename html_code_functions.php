@@ -38,8 +38,17 @@
     $like,
     $likes
   ) {
+
     $img_name = getImg($user_id);
     
+    $data = new MysqlConnector();
+    $data->connectMysql();
+    #LOAD COMMENTS OF THE CURRENT POST
+    $comments = $data->getComments($post_id);         
+    #CHECK IF THERE ARE COMMENTS AND PRINT THEM
+    $num_of_comments = $comments->num_rows;
+    
+
     if($like)
       $class_like = "glyphicon glyphicon-heart";
     else
@@ -70,12 +79,18 @@
           <div class='panel-footer'>
             <button class='like'>
               <span class='" . $class_like . "'></span>
-              <strong><span class='num'>" . $likes . "</span> likes</strong>
+              <strong>
+                <span class='like-num'>" . $likes . "</span> 
+                likes
+              </strong>
             </button>
             
             <button class='comm'>
               <span class='glyphicon glyphicon-comment'></span>
-              <strong>comments</strong>
+              <strong>
+                <span class='comm-num'>" . $num_of_comments . "</span>
+                comments
+              </strong>
             </button>
             
             <button class='reblog pull-right'>
@@ -100,18 +115,10 @@
         </div>
       </div>
     ";
-          
-    $data = new MysqlConnector();
-  
-    $data->connectMysql();
-
-    #LOAD COMMENTS OF THE CURRENT POST
-    $comments = $data->getComments($post_id);         
-          
-    echo "<div class='all-comments'>";
-
-    #CHECK IF THERE ARE COMMENTS AND PRINT THEM
-    if ($comments->num_rows !== 0) { 
+    
+    echo "<div class='all-comments'>";      
+    
+    if ($num_of_comments !== 0) { 
 
       #PRINT COMMENTS OF THE POST
       while($comment = $comments->fetch_assoc()) {
@@ -120,7 +127,8 @@
           $comment['name'], 
           $comment['surname'], 
           $comment['description'], 
-          $comment['sharing_date']
+          $comment['sharing_date'],
+          $num_of_comments
         );
       }
 
@@ -145,7 +153,7 @@
       <li>
        <img class='user-img img-rounded' 
             src='img/" . getImg($user['user_id']) . "'>           
-        <strong>" . $user['surname'] . "<strong>
+        <strong>" . $user['surname'] . "</strong>
         <strong>" . $user['name'] . "</strong>
     ";
 

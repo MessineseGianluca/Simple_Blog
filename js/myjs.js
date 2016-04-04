@@ -150,9 +150,15 @@ function postComment(postId) {
         post: postId
       },
       success: function() {
+
         $('#' + postId).find('.all-comments').css('display', 'block');
         $('#' + postId).find('.all-comments').html( comments );
         $('#' + postId).find('.insert-comment').val('');
+
+        //update number of likes  
+        updatedNumOfComments = parseInt(
+          $("#" + postId).find('.comm-num').text()) + 1;
+        $("#" + postId).find('.comm-num').text(updatedNumOfComments);
       }
     });
   }
@@ -232,8 +238,9 @@ function like(postId) {
         .addClass('glyphicon-heart');
 
       //update number of likes  
-      updatedNumOfLikes = parseInt($("#" + postId).find('.num').text()) + 1;
-      $("#" + postId).find('.num').text(updatedNumOfLikes);
+      updatedNumOfLikes = parseInt(
+        $("#" + postId).find('.like-num').text()) + 1;
+      $("#" + postId).find('.like-num').text(updatedNumOfLikes);
     }
   });
 }
@@ -251,8 +258,9 @@ function dislike(postId) {
         .addClass('glyphicon-heart-empty');
       
       //update number of likes  
-      updatedNumOfLikes = parseInt($("#" + postId).find('.num').text()) - 1;
-      $("#" + postId).find('.num').text(updatedNumOfLikes);
+      updatedNumOfLikes = parseInt(
+        $("#" + postId).find('.like-num').text()) - 1;
+      $("#" + postId).find('.like-num').text(updatedNumOfLikes);
     }
   });
 }

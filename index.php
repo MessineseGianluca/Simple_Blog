@@ -48,8 +48,8 @@
       <div class="collapse navbar-collapse" 
            id="bs-example-navbar-collapse-1">
 
-        <ul class="nav navbar-nav">
-          <li class="dropdown">
+        <ul class="nav navbar-nav zoom">
+          <li class="dropdown zoom">
             <a
                href='#'
                class="dropdown-search" 
@@ -150,7 +150,7 @@
   </div>
   
   <div class='hidden postCodeSample'>
-    <?php printPostCode("", "", "", "", "", "", false, "")?>
+    <?php printPostCode("", "", "", "", "", "", false, "", "")?>
   </div>
 
   <!-- A div for storing a codesample of a general comment --> 
