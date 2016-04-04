@@ -205,7 +205,7 @@ function unfollowUser(userToUnfollow) {
       alert("Unfollowed.");
     }
   });
-}
+} 
 
 function  assignNewPostIdAndShareIt() {
   $.ajax({
@@ -227,9 +227,13 @@ function like(postId) {
     success: function()
     { 
       $("#" + postId)
-        .find(".like span")
+        .find(".like .glyphicon-heart-empty")
         .removeClass('glyphicon-heart-empty')
-        .addClass('glyphicon-heart'); 
+        .addClass('glyphicon-heart');
+
+      //update number of likes  
+      updatedNumOfLikes = parseInt($("#" + postId).find('.num').text()) + 1;
+      $("#" + postId).find('.num').text(updatedNumOfLikes);
     }
   });
 }
@@ -242,9 +246,13 @@ function dislike(postId) {
     success: function()
     { 
       $("#" + postId)
-        .find(".like span")
+        .find(".like .glyphicon-heart")
         .removeClass('glyphicon-heart')
-        .addClass('glyphicon-heart-empty'); 
+        .addClass('glyphicon-heart-empty');
+      
+      //update number of likes  
+      updatedNumOfLikes = parseInt($("#" + postId).find('.num').text()) - 1;
+      $("#" + postId).find('.num').text(updatedNumOfLikes);
     }
   });
 }

@@ -144,12 +144,12 @@
         ) or die($this->connection->error);
       }
      
-      public function isLiked($post) {
+      public function isLiked($post_id) {
          
         $like = $this->connection->query(
           "SELECT *
            FROM Likes
-           WHERE post_id = " . $post . " AND 
+           WHERE post_id = " . $post_id . " AND 
                  user_id = " . $_SESSION['id'] . "
            ;
           "
@@ -159,6 +159,20 @@
         }
         
         return false;
+      }
+
+      public function getNumOfLikes($post_id) {
+        
+        $likes = $this->connection->query(
+          "SELECT COUNT(*) as num
+           FROM Likes
+           WHERE post_id = " . $post_id . "
+           ;
+          "
+        );
+
+        $likes = $likes->fetch_assoc();
+        return $likes['num'];
       }
 
       public function getUsers($text) {
@@ -225,7 +239,8 @@
 
         $comments = $this->connection->query(
             "SELECT Comments.description, Comments.sharing_date, 
-                    Comments.user_id, Users.name, Users.surname, Users.user_id
+                    Comments.user_id, Users.name, Users.surname, 
+                    Users.user_id
              FROM Comments
              INNER JOIN Users
              ON (Comments.post_id = '$post') AND 

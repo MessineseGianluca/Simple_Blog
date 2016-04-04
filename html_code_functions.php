@@ -35,7 +35,8 @@
     $description, 
     $post_id,
     $sharing_date,
-    $like 
+    $like,
+    $likes
   ) {
     $img_name = getImg($user_id);
     
@@ -69,7 +70,7 @@
           <div class='panel-footer'>
             <button class='like'>
               <span class='" . $class_like . "'></span>
-              <strong>likes</strong>
+              <strong><span class='num'>" . $likes . "</span> likes</strong>
             </button>
             
             <button class='comm'>

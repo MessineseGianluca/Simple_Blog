@@ -133,6 +133,7 @@
         #PRINT EACH LOADED POST WITH ITS COMMENTS
         while($post = $result->fetch_assoc()) {     
           $like = $data->isLiked($post['post_id']);
+          $likes = $data->getNumOfLikes($post['post_id']);
           printPostCode(
             $post['user_id'],
             $post['name'], 
@@ -140,7 +141,8 @@
             $post['description'],
             $post['post_id'],
             $post['sharing_date'],
-            $like
+            $like,
+            $likes
           );
         }
       ?>
@@ -148,7 +150,7 @@
   </div>
   
   <div class='hidden postCodeSample'>
-    <?php printPostCode("", "", "", "", "", "", false)?>
+    <?php printPostCode("", "", "", "", "", "", false, "")?>
   </div>
 
   <!-- A div for storing a codesample of a general comment --> 
