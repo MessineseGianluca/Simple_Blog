@@ -21,54 +21,60 @@ $( document ).ready(function() {
         $('.dropdown-search').trigger("click");
     }
   });
-
-  prepare();
-
-});
-
-function prepare() {
-  //When user share a comment
-  $('.comment-form button').click(function() {
-    postId = $(this).parents('.post-box').attr("id");
-    postComment(postId);
-  });
-
+  
   //When user shares a post
   $('.post-submit').click(function() {
-    newPostId = parseInt($(this).attr("dataNextPostId")) + 1;
-    postNewPost(newPostId);
+    assignNewPostIdAndSharePost();
   });
 
+  /******************** DELEGATED EVENTS ************************/
+  /*WHEN YOU ADD ELEMENTS DINAMICALLY, NORMAL EVENTS DON'WORK    |
+  /*WITH THEM. THIS IS A SMART WAY TO DO IT INSTEAD OF prepare() |
+  /*FUNCTION.                                                    |
+  /**************************************************************/
 
-  $('.comm').click(function() {
-    postId = $(this).parents(".post-box").attr("id");
+  //When user share a comment
+  $('.posts-container').on(
+    //event
+    'click',
+    //selector
+    '.post-box .col-lg-12 .panel ' + 
+    '.panel-footer .write-comment ' + 
+    '.panel-body .comment-form button',
+    //handler 
+    function() {
+      postId = $(this).parents('.post-box').attr("id");
+      postComment(postId);
+    }
+  );
+  
+  $('.posts-container').on(
+    'click', 
+    '.post-box .col-lg-12 .panel .panel-footer .comm',
+    function() {
+      postId = $(this).parents(".post-box").attr("id");
 
-    status = $('#' + postId ).find('.all-comments').css('display');
-    if(status === "none" ) 
-      $('#' + postId).find('.all-comments').css('display', 'block');
-    else 
-      $('#' + postId).find('.all-comments').css('display', 'none');  
-  });
-}
+      status = $('#' + postId ).find('.all-comments').css('display');
+      if(status === "none" ) 
+        $('#' + postId).find('.all-comments').css('display', 'block');
+      else 
+        $('#' + postId).find('.all-comments').css('display', 'none');  
+    }
+  );
 
-/******************** DELEGATED EVENTS ************************/
-/*WHEN YOU ADD ELEMENTS DINAMICALLY, NORMAL EVENTS DON'WORK    |
-/*WITH THEM. THIS IS A SMART WAY TO DO IT INSTEAD OF prepare() |
-/*FUNCTION.                                                    |
-/**************************************************************/
-
-$('.search-result').on('click', 'li .follow', function() {
+  $('.search-result').on('click', 'li .follow', function() {
     
-  userToFollow = $(this).attr("data-id");
-  followUser(userToFollow);
-});
+    userToFollow = $(this).attr("data-id");
+    followUser(userToFollow);
+  });
   
-$('.search-result').on('click', 'li .unfollow', function() {
-  
-  userToUnfollow = $(this).attr("data-id");
-  unfollowUser(userToUnfollow);
+  $('.search-result').on('click', 'li .unfollow', function() {
+    
+    userToUnfollow = $(this).attr("data-id");
+    unfollowUser(userToUnfollow);
+  });
+  /***********************************************************/
 });
-/***********************************************************/
 
 function postNewPost(postId) {
 
@@ -95,8 +101,7 @@ function postNewPost(postId) {
       success: function() {
         $(".posts-container").prepend(postCode);
         $(".text-post").val("");
-        $(".post-submit").attr("dataNextPostId", postId);
-        prepare();
+        //prepare();
       }
     });
   }
@@ -189,6 +194,18 @@ function unfollowUser(userToUnfollow) {
       alert("Unfollowed.");
     }
   });
+}
+
+function  assignNewPostIdAndSharePost() {
+  $.ajax({
+    type: "POST",
+    url: "assign_new_post_id.php",
+    success: function(newId)
+    { 
+      postNewPost(newId);
+    }
+  });
+  
 }
 
 function getSqlFormatDate() {

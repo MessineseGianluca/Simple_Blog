@@ -115,7 +115,6 @@
           <button style='float: right; margin-bottom: 10px;' 
                   class='btn btn-default post-submit'
                   type='button'
-                  dataNextPostId=<?php echo $data->findLastPostId(); ?>
                   ><span class="glyphicon glyphicon-pencil"></span></button>
           
           <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
