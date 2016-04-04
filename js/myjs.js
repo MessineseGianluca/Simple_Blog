@@ -24,7 +24,7 @@ $( document ).ready(function() {
   
   //When user shares a post
   $('.post-submit').click(function() {
-    assignNewPostIdAndSharePost();
+    assignNewPostIdAndShareIt();
   });
 
   /******************** DELEGATED EVENTS ************************/
@@ -45,6 +45,18 @@ $( document ).ready(function() {
     function() {
       postId = $(this).parents('.post-box').attr("id");
       postComment(postId);
+    }
+  );
+
+  $('.posts-container').on(
+    'click', 
+    '.post-box .col-lg-12 .panel .panel-footer .like span',
+    function() {
+      postId = $(this).parents('.post-box').attr("id");
+      if($(this).hasClass("glyphicon-heart-empty"))
+        like(postId);
+      else 
+        dislike(postId);
     }
   );
   
@@ -101,7 +113,6 @@ function postNewPost(postId) {
       success: function() {
         $(".posts-container").prepend(postCode);
         $(".text-post").val("");
-        //prepare();
       }
     });
   }
@@ -196,7 +207,7 @@ function unfollowUser(userToUnfollow) {
   });
 }
 
-function  assignNewPostIdAndSharePost() {
+function  assignNewPostIdAndShareIt() {
   $.ajax({
     type: "POST",
     url: "assign_new_post_id.php",
@@ -207,6 +218,37 @@ function  assignNewPostIdAndSharePost() {
   });
   
 }
+
+function like(postId) {
+  $.ajax({
+    type: "POST",
+    url: "like.php",
+    data: {post_id: postId},
+    success: function()
+    { 
+      $("#" + postId)
+        .find(".like span")
+        .removeClass('glyphicon-heart-empty')
+        .addClass('glyphicon-heart'); 
+    }
+  });
+}
+
+function dislike(postId) {
+  $.ajax({
+    type: "POST",
+    url: "dislike.php",
+    data: {post_id: postId},
+    success: function()
+    { 
+      $("#" + postId)
+        .find(".like span")
+        .removeClass('glyphicon-heart')
+        .addClass('glyphicon-heart-empty'); 
+    }
+  });
+}
+
 
 function getSqlFormatDate() {
   //Date in SQL format 

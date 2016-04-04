@@ -29,6 +29,7 @@
 
 .post-submit {
   display: none;
+  float: right;
 }
 
 .like, .comm, .reblog, .comments {
@@ -128,4 +129,11 @@
 .navbar-default .navbar-nav>.open>a:focus, 
 .navbar-default .navbar-nav>.open>a:hover {
   background-color: rgb(248, 248, 248);
+}
+
+.glyphicon-heart-empty:hover,
+.glyphicon-heart:hover,
+.glyphicon-heart-empty:active,
+.glyphicon-heart:active {
+  font-size: 2em;
 }

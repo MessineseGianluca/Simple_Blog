@@ -34,9 +34,16 @@
     $surname, 
     $description, 
     $post_id,
-    $sharing_date
+    $sharing_date,
+    $like 
   ) {
     $img_name = getImg($user_id);
+    
+    if($like)
+      $class_like = "glyphicon glyphicon-heart";
+    else
+      $class_like = "glyphicon glyphicon-heart-empty";
+
     echo "
       <div class='row post-box' id=" . $post_id . ">
         <div class='col-lg-12 col-xs-12'>
@@ -61,13 +68,15 @@
           </div><!-- /panel-body -->
           <div class='panel-footer'>
             <button class='like'>
-              <span class='glyphicon glyphicon-heart-empty'></span>
+              <span class='" . $class_like . "'></span>
               <strong>likes</strong>
             </button>
+            
             <button class='comm'>
               <span class='glyphicon glyphicon-comment'></span>
               <strong>comments</strong>
             </button>
+            
             <button class='reblog pull-right'>
               <span class='glyphicon glyphicon-plus'></span>
             </button>

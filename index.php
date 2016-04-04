@@ -112,13 +112,10 @@
                     name='description'
                     placeholder='Insert some text...'></textarea>
           
-          <button style='float: right; margin-bottom: 10px;' 
-                  class='btn btn-default post-submit'
+          <button class='btn btn-default post-submit'
                   type='button'
                   ><span class="glyphicon glyphicon-pencil"></span></button>
-          
-          <!--<input class='hidden choose-img' type='file' name='imgToUpdate'>-->        
-
+                 
         </form>
       </div>
     </div> 
@@ -132,16 +129,18 @@
         
         #LOAD ALL POSTS
         $result = $data->getPosts();
-          
+        
         #PRINT EACH LOADED POST WITH ITS COMMENTS
         while($post = $result->fetch_assoc()) {     
+          $like = $data->isLiked($post['post_id']);
           printPostCode(
             $post['user_id'],
             $post['name'], 
             $post['surname'],
             $post['description'],
             $post['post_id'],
-            $post['sharing_date']
+            $post['sharing_date'],
+            $like
           );
         }
       ?>
@@ -149,7 +148,7 @@
   </div>
   
   <div class='hidden postCodeSample'>
-    <?php printPostCode("", "", "", "")?>
+    <?php printPostCode("", "", "", "", false)?>
   </div>
 
   <!-- A div for storing a codesample of a general comment --> 

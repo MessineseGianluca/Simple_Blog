@@ -124,6 +124,43 @@
         ) or die($this->connection->error);
       }
       
+      public function like($post_id) {
+        $this->connection->query(
+            "INSERT INTO Likes
+             VALUES (
+               '$post_id', 
+               " . $_SESSION['id'] . "
+             ); 
+            "
+        ) or die($this->connection->error);
+      }
+
+      public function dislike($post_id) {
+        $this->connection->query(
+            "DELETE FROM Likes
+             WHERE post_id = '$post_id' AND 
+                   user_id = " . $_SESSION['id'] . ";
+            "
+        ) or die($this->connection->error);
+      }
+     
+      public function isLiked($post) {
+         
+        $like = $this->connection->query(
+          "SELECT *
+           FROM Likes
+           WHERE post_id = " . $post . " AND 
+                 user_id = " . $_SESSION['id'] . "
+           ;
+          "
+        );
+        if($like->num_rows !== 0) {
+          return true;
+        }
+        
+        return false;
+      }
+
       public function getUsers($text) {
         $text = $this->connection->real_escape_string( $text ); 
         //get all users
@@ -181,17 +218,6 @@
           "
         );
 
-
-        /*$posts = $this->connection->query(
-            "SELECT Posts.description, Posts.sharing_date, Posts.post_id,
-                    Users.name, Users.surname, Users.user_id
-             FROM Posts
-             INNER JOIN Users
-             ON Users.user_id = Posts.user_id
-             ORDER BY sharing_date DESC;
-            "
-        );*/
-
         return $posts;
       }
 
@@ -240,9 +266,6 @@
   
   }
   
-  
-
-
   function cryptPass($pass, $rounds = 10) {
   
     $salt = '';
