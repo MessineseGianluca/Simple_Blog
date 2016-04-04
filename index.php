@@ -148,12 +148,12 @@
   </div>
   
   <div class='hidden postCodeSample'>
-    <?php printPostCode("", "", "", "", false)?>
+    <?php printPostCode("", "", "", "", "", "", false)?>
   </div>
 
   <!-- A div for storing a codesample of a general comment --> 
   <div class='hidden commentCodeSample'>
-    <?php printCommentCode("", "", "", ""); ?>
+    <?php printCommentCode("", "", "", "", ""); ?>
   </div>
   
 
