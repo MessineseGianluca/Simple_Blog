@@ -5,4 +5,3 @@
   $data->connectMysql();
   $data->unfollow($_POST['user_to_unfollow']);
   $data->disconnectMysql();
-  http_response_code(201);

@@ -95,7 +95,7 @@ function postNewPost(postId) {
 
   $('.postCodeSample .post-box').attr("id", postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
-  $('.postCodeSample .text').html("<h3> " + description + "</h3>");
+  $('.postCodeSample .text').html("<h3 class='text'>" + description + "</h3>");
   $(".postCodeSample .date").text(getSqlFormatDate());
   $('.postCodeSample .user-img').attr("src", img);
   
@@ -219,7 +219,7 @@ function  assignNewPostIdAndShareIt() {
     url: "assign_new_post_id.php",
     success: function(newId)
     { 
-      postNewPost(newId);
+      postNewPost(parseInt(newId) + 1);
     }
   });
   

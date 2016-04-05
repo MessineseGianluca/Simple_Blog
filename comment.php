@@ -5,5 +5,4 @@
   $data->connectMysql();
   $data->addComment();
   $data->disconnectMysql();
-  http_response_code(201);
 
