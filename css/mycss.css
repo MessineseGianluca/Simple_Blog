@@ -93,6 +93,20 @@
   background-color: white;
 }
 
+.follow-note, .unfollow-note {
+  display: block;
+  margin-bottom: 5px;
+  margin-left: 2px;
+}
+
+.unfollow-note {
+  color: orange;
+}
+
+.follow-note {
+  color: green;
+}
+
 .write-comment .panel-body {
   padding: 0px;
   margin-top: 10px;

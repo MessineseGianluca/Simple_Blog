@@ -1,5 +1,4 @@
 <?php
-  session_start();
   include 'php_functions.php';
   include 'html_code_functions.php';
   #Create an object for the dbms handlings
@@ -119,7 +118,9 @@
         </form>
       </div>
     </div> 
-
+    
+    <div class='events'></div>
+        
     <!-- Container of Posts -->
     <div class='posts-container'>
       <?php

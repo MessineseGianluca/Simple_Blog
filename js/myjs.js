@@ -196,7 +196,12 @@ function followUser(userToFollow) {
     data: {user_to_follow: userToFollow},
     success: function()
     {  
-      alert("Followed.");
+      $('.events').append(
+        "<strong class='follow-note'> Followed </strong>"
+      );
+      setTimeout(function() { 
+        $('.events .follow-note').remove(); 
+      }, 3000);
     }
   });
 }
@@ -209,7 +214,12 @@ function unfollowUser(userToUnfollow) {
     data: {user_to_unfollow: userToUnfollow},
     success: function()
     {  
-      alert("Unfollowed.");
+      $('.events').append(
+        "<strong class='unfollow-note'> Unfollowed </strong>"
+      );
+      setTimeout(function() { 
+        $('.events .unfollow-note').remove(); 
+      }, 3000);
     }
   });
 } 
