@@ -58,7 +58,7 @@
       }
       
       #Return true if the email  already exits, else return false 
-      public function isRegistred($email) {
+      public function isRegistered($email) {
 
         $result = $this->connection->query(
             "SELECT email

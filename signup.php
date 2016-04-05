@@ -7,46 +7,41 @@
   <link rel="stylesheet" href="css/mycss.css">
 </head>  
 <body class="colored-body">
-  <?php
-    session_start();
-    echo '<p style="color:red">' . $_SESSION['signup_message'] . '</p> '; 
-  ?>
-
   <div class="container">
-    <form class="form-signin"
+    <form class="form-signup"
           name='signup' 
           action='validate_new_user.php' 
           method='post'
           enctype="multipart/form-data">
       <h2>Please sign in</h2>
-
+      <div class="errors"></div> 
       <input type="text" 
-             class="form-control" 
+             class="form-control name"
              placeholder="Name"
              name="name"
              maxlength="20" 
              required
              autofocus>
       <input type="text" 
-             class="form-control" 
+             class="form-control surname" 
              placeholder="Surname"
              name="surname"
              maxlength="20" 
              required>      
       <input type="email" 
-             class="form-control" 
+             class="form-control email" 
              placeholder="Email address"
              name="email" 
              required>
       <input type="password" 
              maxlength="16" 
-             class="form-control"
+             class="form-control password"
              name="pass" 
              placeholder="Password" 
              required>
       <input type="password" 
              maxlength="16" 
-             class="form-control"
+             class="form-control password2"
              name="pass2" 
              placeholder="Repeat password" 
              required>
@@ -63,13 +58,14 @@
 
       <div class="row" style="margin-top: 20px;">
         <div class="col-lg-5">       
-          <button class="btn btn-lg btn-warning btn-block" type="submit">Sign up</button>
+          <button class='btn btn-lg btn-warning btn-block sign-up' 
+                  type='submit'>Sign up</button>
         </div>
         <div class="col-lg-2">
           <h4 style="text-align: center"> OR </h4>
         </div>
         <div class="col-lg-5">       
-          <button class="btn btn-lg btn-primary btn-block" 
+          <button class="btn btn-lg btn-primary btn-block login" 
                   type="button" 
                   onclick = 'window.open("login.php", "_self")'
           >Sing in</button>
