@@ -96,7 +96,8 @@ function postNewPost(postId) {
   $('.postCodeSample .post-box').attr("id", postId);
   $('.postCodeSample .author').html("<b>" + name + "</b>");
   $('.postCodeSample .text').html("<h3 class='text'>" + description + "</h3>");
-  $(".postCodeSample .date").text(getSqlFormatDate());
+  $('.postCodeSample .date').text(getSqlFormatDate());
+  $('.postCodeSample').find('.like-num').text("0");
   $('.postCodeSample .user-img').attr("src", img);
   
   var postCode = $(".postCodeSample").html();
