@@ -1,7 +1,6 @@
 <?php
   include 'php_functions.php';
 
-  $_SESSION['login_message'] = '';
   $pass = $_POST['pass'];
   $email = $_POST['email'];
   
@@ -10,12 +9,12 @@
   
   #if authenticated
   if($data->logIn($email, $pass)) {
-    header("location: index.php");
+    echo "Authenticated.";
     exit;
   }
   
   #else come back to login.html  
   $data->disconnectMysql();
-  $_SESSION['login_message'] = "Invalid input.";
-  header("location: login.php");
+  echo "*Invalid email or password.";
+  
 

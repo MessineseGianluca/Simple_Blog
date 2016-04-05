@@ -53,8 +53,6 @@
             "
         ) or die($this->connection->error);
         
-        $result = $result->fetch_assoc();
-        return $result['user_id'];
       }
       
       #Return true if the email  already exits, else return false 

@@ -53,7 +53,7 @@
    * INFORMATIONS.
    */
   $pass = cryptPass($pass);    
-  $user_id = $data->signUp($email, $pass, $name, $surname);
+  $data->signUp($email, $pass, $name, $surname);
   $data->disconnectMysql();
 
   echo "Successfully registered."; 

@@ -5,6 +5,29 @@ $(".upload-btn").click(function () {
 });
 
 
+$('.form-signin').submit(function(event){
+  event.preventDefault();    
+  
+  var email = $('.email').val();  
+  var pass = $('.password').val();
+  
+  $.ajax({
+    type: "POST",
+    url: "validate_user.php",
+    data: {
+      pass: pass,
+      email: email
+    },
+    success: function(msg)
+    { 
+       if(msg !== "Authenticated.") {
+         $('.errors').html("<p style='color:red'>" + msg + "</p>");
+       }
+       else window.open("index.php", "_self");
+    }
+  });
+});
+
   
 $('.form-signup').submit(function(event){
   event.preventDefault();    

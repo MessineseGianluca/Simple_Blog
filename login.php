@@ -9,10 +9,6 @@
   <link rel="stylesheet" href="css/mycss.css">
 </head>
 <body class="colored-body">
-  <?php
-    session_start();
-    echo '<p style="color:red">' . $_SESSION['login_message'] . '</p> '; 
-  ?>
 
   <div class="container">
     <form class="form-signin"
@@ -20,21 +16,23 @@
           action='validate_user.php' 
           method='post'>
       <h2>Please sign in</h2>
+      <div class="errors"></div> 
       <input type="email" 
-             class="form-control" 
+             class="form-control email" 
              placeholder="Email address"
              name="email" 
              required 
              autofocus>
       <input type="password" 
              maxlength="16" 
-             class="form-control"
+             class="form-control password"
              name="pass" 
              placeholder="Password" 
              required>
       <div class="row" style="margin-top: 20px;">
         <div class="col-lg-5">       
-          <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block sign-in" 
+                  type="submit">Sign in</button>
         </div>
         <div class="col-lg-2">
           <h4 style="text-align: center"> OR </h4>
@@ -51,5 +49,6 @@
 
   <script src="bower_components/jquery/dist/jquery.min.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="js/upload.js"></script>  
 </body>
 </html>
