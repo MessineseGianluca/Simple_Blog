@@ -199,9 +199,11 @@ function followUser(userToFollow) {
       $('.events').append(
         "<strong class='follow-note'> Followed </strong>"
       );
+      $('.navbar-collapse').removeClass('in').attr("aria-expanded", "false");
       setTimeout(function() { 
-        $('.events .follow-note').remove(); 
-      }, 3000);
+        $('.events .follow-note').remove();
+        window.open('index.php', '_self'); 
+      }, 2000);
     }
   });
 }
@@ -215,11 +217,13 @@ function unfollowUser(userToUnfollow) {
     success: function()
     {  
       $('.events').append(
-        "<strong class='unfollow-note'> Unfollowed </strong>"
+        "<strong class='unfollow-note'> Unfollowed </strong>"        
       );
+      $('.navbar-collapse').removeClass('in').attr("aria-expanded", "false");
       setTimeout(function() { 
-        $('.events .unfollow-note').remove(); 
-      }, 3000);
+        $('.events .unfollow-note').remove();
+        window.open('index.php', '_self');
+      }, 2000);
     }
   });
 } 
@@ -231,6 +235,7 @@ function  assignNewPostIdAndShareIt() {
     success: function(newId)
     { 
       postNewPost(parseInt(newId) + 1);
+
     }
   });
   
