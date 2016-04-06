@@ -18,6 +18,7 @@ $('.form-signin').submit(function(event){
       pass: pass,
       email: email
     },
+    dataType: 'text',
     success: function(msg)
     { 
        if(msg !== "Authenticated.") {
@@ -48,6 +49,7 @@ $('.form-signup').submit(function(event){
       pass2: pass2,
       email: email
     },
+    dataType: 'text',
     success: function(msg)
     { 
        if(msg !== "Successfully registered.") {

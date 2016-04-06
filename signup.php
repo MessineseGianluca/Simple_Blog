@@ -13,7 +13,7 @@
           action='validate_new_user.php' 
           method='post'
           enctype="multipart/form-data">
-      <h2>Please sign in</h2>
+      <h2>Please sign up</h2>
       <div class="errors"></div> 
       <input type="text" 
              class="form-control name"
