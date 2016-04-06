@@ -30,6 +30,8 @@
     exit;
   }
 
+  $user_id = $data->findLastUserId() + 1;
+
   /************ CHECK PICTURE ************/
   $img_name = $_FILES['imgToUpdate']['name'];  
   if($img_name !== "") { 

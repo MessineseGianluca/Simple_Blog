@@ -104,6 +104,16 @@
         return $lastone['MAX(post_id)'];
       }
 
+      public function findLastUserId() {
+        
+        $last = $this->connection->query(
+          "SELECT MAX(user_id) FROM Users;"
+        ) or die ($this->connection->error);
+
+        $lastone = $last->fetch_assoc();
+        return $lastone['MAX(user_id)'];
+      }
+
       public function addPost() {
         
         $content = $_POST['description'];
