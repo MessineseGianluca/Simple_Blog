@@ -32,23 +32,19 @@ $('.form-signin').submit(function(event){
   
 $('.form-signup').submit(function(event){
   event.preventDefault();    
-    
-  /*var name = $('.name').val();
-  var surname = $('.surname').val();
-  var pass = $('.password').val();
-  var pass2 = $('.password2').val();
-  var email = $('.email').val();*/
   var formData = new FormData($('.form-signup')[0]);
 
   $.ajax({
     type: "POST",
     url: "validate_new_user.php",
     data: formData,
-    dataType: 'text',
+    cache:false,
     contentType: false,
     processData: false,
+    dataType: 'text',
     success: function(msg)
     { 
+
        if(msg !== "Successfully registered.") {
          $('.errors').html("<p style='color:red'>" + msg + "</p>");
        }
