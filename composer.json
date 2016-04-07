@@ -1,0 +1,12 @@
+{
+    "name": "gianluca/simple_blog",
+    "require": {
+        "cloudinary/cloudinary_php": "^1.3"
+    },
+    "authors": [
+        {
+            "name": "MessineseGianluca",
+            "email": "gianluca.messi1@gmail.com"
+        }
+    ]
+}

@@ -3,3 +3,5 @@ bower_components/
 img/*
 !img/user.jpeg
 
+
+/vendor/
