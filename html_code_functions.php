@@ -6,16 +6,17 @@
     $name, 
     $surname, 
     $comment, 
-    $comment_date
+    $comment_date,
+    $img_url
   ) {
+    if($img_url == "") $img_url = "img/user.png";
 
-    $img_name = getImg($user_id);
     echo "
       <div class='panel-body comment-box row' style='border-bottom: 1px;'>
         
         <div class='col-lg-1 col-xs-2'>
           <img class='img-rounded user-comm-img img-container' 
-               src='img/" . $img_name . "' >
+               src='" . $img_url . "' >
         </div>
         <div class='col-lg-11 col-xs-10'>
           <strong class='username'>" . $surname . " " . $name . "</strong>
@@ -36,11 +37,11 @@
     $post_id,
     $sharing_date,
     $like,
-    $likes
+    $likes,
+    $img_url
   ) {
-
-    $img_name = getImg($user_id);
     
+    if($img_url == "") $img_url = "img/user.png";
     $data = new MysqlConnector();
     $data->connectMysql();
     #LOAD COMMENTS OF THE CURRENT POST
@@ -62,7 +63,7 @@
               <div class='row'>
                 <div class='col-lg-1 col-xs-2 img-container'>
                   <img class='img-rounded user-img' 
-                       src='img/" . $img_name . "' >
+                       src='" . $img_url . "' >
                 </div>
                 <div class='col-lg-11 col-xs-10'>
                   <strong class='author'>" . $surname . " " . $name . "</strong>
@@ -128,7 +129,7 @@
           $comment['surname'], 
           $comment['description'], 
           $comment['sharing_date'],
-          $num_of_comments
+          $comment['img_url']
         );
       }
 
@@ -149,10 +150,11 @@
   }
   
   function printUserRow($user) {
+    if($user['img_url'] == "") $user['img_url'] = "img/user.png";
     echo "
       <li>
        <img class='user-img img-rounded' 
-            src='img/" . getImg($user['user_id']) . "'>           
+            src='" . $user['img_url'] . "'>           
         <strong>" . $user['surname'] . "</strong>
         <strong>" . $user['name'] . "</strong>
     ";
@@ -177,8 +179,17 @@
   }
 
 
-  function getImg($user_id) {   
+  /*function getImg($user_id) {   
     //find the img of the post's author
     if(file_exists('img/' . $user_id)) return $user_id;
     return "user";
+  }*/
+  
+
+  /* If a user has'n an img, return the default img index */
+  function getImg() {
+    if($_SESSION['img_url'] == "") {
+      return "img/user.png";
+    }
+    return $_SESSION['img_url'];
   }

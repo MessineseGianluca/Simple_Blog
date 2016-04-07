@@ -37,20 +37,12 @@
       }  
     
       #Insert new account
-      public function signUp($email, $pass, $name, $surname) {
+      public function signUp($email, $pass, $name, $surname, $img_url) {
 
         $this->connection->query(
-          "INSERT INTO Users(email, password, name, surname)
-           VALUES('$email', '$pass', '$name', '$surname');      
+          "INSERT INTO Users(email, password, name, surname, img_url)
+           VALUES('$email', '$pass', '$name', '$surname', '$img_url');      
           "
-        ) or die($this->connection->error);
-        
-        //Get the user_id of the new User
-        $result = $this->connection->query(
-            "SELECT user_id
-             FROM Users
-             WHERE email='$email';
-            "
         ) or die($this->connection->error);
         
       }
@@ -71,7 +63,7 @@
       #Check login 
       public function logIn($email, $pass) {
         $result = $this->connection->query(
-            "SELECT user_id, name, surname, password 
+            "SELECT user_id, name, surname, password, img_url
              FROM Users 
              WHERE email='$email';
             "
@@ -87,6 +79,7 @@
           $_SESSION['id'] = $row['user_id'];
           $_SESSION['name'] = $row['name'];
           $_SESSION['surname'] = $row['surname'];
+          $_SESSION['img_url'] = $row['img_url'];
           
           return true;
         }
@@ -104,7 +97,7 @@
         return $lastone['MAX(post_id)'];
       }
 
-      public function findLastUserId() {
+      /*public function findLastUserId() {
         
         $last = $this->connection->query(
           "SELECT MAX(user_id) FROM Users;"
@@ -112,7 +105,7 @@
 
         $lastone = $last->fetch_assoc();
         return $lastone['MAX(user_id)'];
-      }
+      }*/
 
       public function addPost() {
         
@@ -187,7 +180,7 @@
         $text = $this->connection->real_escape_string( $text ); 
         //get all users
         $users = $this->connection->query(
-          "SELECT user_id, name, surname
+          "SELECT user_id, name, surname, img_url
            FROM Users
            WHERE (name like '%" . $text . "%' or 
                  surname like '%" . $text . "%') and 
@@ -226,7 +219,7 @@
       public function getPosts() {
         $posts = $this->connection->query(
           "SELECT P.post_id, P.description, P.sharing_date, 
-                  U.name, U.surname, U.user_id 
+                  U.name, U.surname, U.user_id , U.img_url
            FROM Posts P, Users U
            WHERE (P.user_id = " . $_SESSION['id'] . " OR 
                  P.user_id IN (   
@@ -248,7 +241,7 @@
         $comments = $this->connection->query(
             "SELECT Comments.description, Comments.sharing_date, 
                     Comments.user_id, Users.name, Users.surname, 
-                    Users.user_id
+                    Users.user_id, Users.img_url
              FROM Comments
              INNER JOIN Users
              ON (Comments.post_id = '$post') AND 

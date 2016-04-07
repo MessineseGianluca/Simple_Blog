@@ -1,6 +1,7 @@
 <?php
   include 'php_functions.php';
-  ####################################FUNCTIONS################################
+
+  ####################################FUNCTIONS#############################
   
   #CREATE an array which will contain the SQL statements for deleting tables
   #and RETURN the string that we need.
@@ -33,14 +34,16 @@
           password VARCHAR(255) NOT NULL,
           signing_up_date TIMESTAMP,
           name VARCHAR(20) NOT NULL,
-          surname VARCHAR(20) NOT NULL);
+          surname VARCHAR(20) NOT NULL,
+          img_url varchar(100));
         ' ,
         'CREATE TABLE Posts (
           post_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
           description TEXT NOT NULL,
           sharing_date TIMESTAMP,
           user_id SMALLINT UNSIGNED NOT NULL,
-          FOREIGN KEY(user_id) REFERENCES Users(user_id) );
+          FOREIGN KEY(user_id) REFERENCES Users(user_id), 
+          img_url varchar(100));
         ' ,
         'CREATE TABLE Comments (
           comment_id INT UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,

@@ -8,7 +8,6 @@
     exit;
   } 
 
-
   $data = new MysqlConnector();
   $data->connectMysql();
 ?>
@@ -143,7 +142,8 @@
             $post['post_id'],
             $post['sharing_date'],
             $like,
-            $likes
+            $likes,
+            $post['img_url']
           );
         }
       ?>
@@ -151,12 +151,12 @@
   </div>
   
   <div class='hidden postCodeSample'>
-    <?php printPostCode("", "", "", "", "", "", false, "", "")?>
+    <?php printPostCode("", "", "", "", "", "", false, "", "", "")?>
   </div>
 
   <!-- A div for storing a codesample of a general comment --> 
   <div class='hidden commentCodeSample'>
-    <?php printCommentCode("", "", "", "", ""); ?>
+    <?php printCommentCode("", "", "", "", "", ""); ?>
   </div>
   
 
@@ -169,10 +169,11 @@
 
   <!--Store some js global var -->
   <script>
+    /* GLOBAL VARIABLES */
     firstname = "<?php echo $_SESSION['name']; ?>";
     lastname =  "<?php echo $_SESSION['surname']; ?>";
     userId = "<?php echo $_SESSION['id']; ?>";
-    img = "img/" + "<?php echo getImg($_SESSION['id']); ?>";
+    img = "<?php echo getImg() ?>";
   </script>
 
   <script src="js/myjs.js"></script>

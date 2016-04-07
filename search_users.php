@@ -19,6 +19,7 @@
     		$user['follow'] = 0;
     	} 
     }
+
     printUserRow($user);
   }
 

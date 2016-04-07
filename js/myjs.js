@@ -175,9 +175,11 @@ function searchContent(text) {
     success: function(html)
     { 
       $(".search-result").html(html);
-      if($('.search-result').css("display") !== 'block')
+      if($('.search-result').css("display") !== 'block') { 
         $(".dropdown-search").trigger("click");
         $('.search').focus();
+      }
+      
       if($('.search-result').html() == "") {
         $(".search-result").append(
           "<li><strong> Result not found...<strong></li>"
