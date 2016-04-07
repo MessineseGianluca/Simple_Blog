@@ -38,7 +38,10 @@ then init and compile the bower.json config file by digiting:
 then:
 -$ bower install --save
 
-#Install Cloudinary by composer
-First install composer.phar(see the documentation) into the project folder
-and then digits on the cli:
-- $php composer.phar install
+#Install And Configure Cloudinary by composer
+-First install composer.phar(see the documentation) into the project folder
+       and then digits on the cli:
+       $php composer.phar install
+-Then configure your credentials in cloudinary_config.php
+
+
