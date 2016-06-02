@@ -60,8 +60,8 @@
   /* IF EVERYTHING IS OKAY, CRIPT THE PASSWORD AND STORE THE NEW USER
    * INFORMATIONS.
    */
-  $pass = cryptPass($pass);    
-  $data->signUp($email, $pass, $name, $surname, $img_url);
+  $encrypted_pass = cryptPass($pass);    
+  $data->signUp($email, $encrypted_pass, $name, $surname, $img_url);
   $data->disconnectMysql();
 
   echo "Successfully registered."; 

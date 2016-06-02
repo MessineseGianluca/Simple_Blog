@@ -131,9 +131,13 @@
         $result = $data->getPosts();
         
         #PRINT EACH LOADED POST WITH ITS COMMENTS
-        while($post = $result->fetch_assoc()) {     
+        while($post = $result->fetch_assoc()) {
+          
+          //check if the logged user likes the current post      
           $like = $data->isLiked($post['post_id']);
+          //count how many like the post has
           $likes = $data->getNumOfLikes($post['post_id']);
+          
           printPostCode(
             $post['user_id'],
             $post['name'], 

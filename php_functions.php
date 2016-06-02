@@ -2,6 +2,8 @@
   session_start();
   include 'config.php';
   
+  /************************** MYSQL HANDLER *************************/
+
   Class MysqlConnector {
       
       public $connection;
@@ -38,7 +40,7 @@
     
       #Insert new account
       public function signUp($email, $pass, $name, $surname, $img_url) {
-
+        
         $this->connection->query(
           "INSERT INTO Users(email, password, name, surname, img_url)
            VALUES('$email', '$pass', '$name', '$surname', '$img_url');      
@@ -49,7 +51,7 @@
       
       #Return true if the email  already exits, else return false 
       public function isRegistered($email) {
-
+          
         $result = $this->connection->query(
             "SELECT email
              FROM Users 
@@ -65,7 +67,7 @@
         $result = $this->connection->query(
             "SELECT user_id, name, surname, password, img_url
              FROM Users 
-             WHERE email='$email';
+             WHERE email = '$email';
             "
         );
         
@@ -73,14 +75,14 @@
         
         //Put got data into $row
         $row = $result->fetch_assoc();
-        
-        if(crypt($pass, $row['password']) == $row['password']) {
+        $pass_in_db = $row['password'];
+
+        if(crypt($pass, $pass_in_db) == $pass_in_db) {
           $_SESSION['authenticated'] = true;
           $_SESSION['id'] = $row['user_id'];
           $_SESSION['name'] = $row['name'];
           $_SESSION['surname'] = $row['surname'];
           $_SESSION['img_url'] = $row['img_url'];
-          
           return true;
         }
         
@@ -96,16 +98,6 @@
         $lastone = $last->fetch_assoc();
         return $lastone['MAX(post_id)'];
       }
-
-      /*public function findLastUserId() {
-        
-        $last = $this->connection->query(
-          "SELECT MAX(user_id) FROM Users;"
-        ) or die ($this->connection->error);
-
-        $lastone = $last->fetch_assoc();
-        return $lastone['MAX(user_id)'];
-      }*/
 
       public function addPost() {
         
@@ -282,19 +274,42 @@
   
   }
   
-  function cryptPass($pass, $rounds = 10) {
   
-    $salt = '';
-    #merge all elements into the same array. It contains all the possible
-    #characters that could be used to generate a random salt
+  /*********************** PASSWORD ENCRYPTION ****************************/
+
+  function cryptPass($pass, $rounds = 10) {
+    
+    $hash = '$2y$'; //algorithm to use (blowfish)
+
+    $hash = $hash . $rounds . "$"; //algorith + rounds ("$2y$10$)
+    
+    /*(26 + 26 + 10)^22 is the Number of possible combinations with this range.
+     *It is computionally impossibile for a rainbow table to contain so many
+     *combinations multiplied for each possible password. 
+     */
+    $salt = generate_salt(); 
+
+    return crypt($pass, $hash . $salt);
+  }
+
+  
+  function generate_salt() {
+
+    $salt = ''; 
+
+    /*
+     *Merge all elements into the same array. It contains all the possible
+     *characters that could be used to generate a random salt
+     */
     $saltChars = array_merge(range('A', 'Z'), range('a', 'z'), range(0, 9));
     
-    #generate a random salt of 22 characters
+    //Generate a random salt of 22 characters
     for($i = 0; $i < 22; $i++) {
-      #array_rand chose a random index and takes the corrispent element
-      $salt .= $saltChars[array_rand($saltChars)];
+      //array_rand() chose a random index of the array passed in input
+            $salt .= $saltChars[array_rand($saltChars)];
     }
-  
-    return crypt($pass, sprintf('$2y$%02d$', $rounds) . $salt);
+
+    return $salt;
+    
   }
   
