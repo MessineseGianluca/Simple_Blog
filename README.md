@@ -1,5 +1,5 @@
 # Simple-Blog
-A Simple Blog using php and mysql. 
+A Simple Blog using php and mysql (here a dimostration: http://besocialesame.altervista.org/index.php)
 
 #Configuring mysql
 -Open mysql as root: mysql -u root -p and insert password;
@@ -43,5 +43,4 @@ then:
        and then digits on the cli:
        $php composer.phar install
 -Then configure your credentials in cloudinary_config.php
-
 
